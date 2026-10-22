@@ -1,4 +1,3 @@
-```tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -162,4 +161,3 @@ export const Sidebar: React.FC<SidebarProps> = ({
     </aside>
   );
 };
-```
