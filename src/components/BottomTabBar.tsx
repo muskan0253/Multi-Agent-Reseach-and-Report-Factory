@@ -85,12 +85,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
   return (
     <nav
       aria-label="Main Agent Navigation"
-```tsx
-    <nav
-      aria-label="Main Agent Navigation"
-      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[#E5E7EB] shadow-[0_-2px_12px_rgba(16,24,40,0.04)] px-1 py-1 flex md:hidden items-center justify-center no-print"
-    >
-```
+      className="fixed bottom-0 left-0 right-0 z-30 bg-[var(--bg-page)] border-t border-[var(--border-subtle)] shadow-[0_-2px_12px_rgba(16,24,40,0.12)] px-1 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] flex md:hidden items-center justify-center no-print"
     >
       <div className="flex items-center justify-between gap-0.5 w-full overflow-hidden">
         {tabs.map((tab) => {

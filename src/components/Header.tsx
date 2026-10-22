@@ -91,14 +91,14 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <div className="w-full liquid-glass sticky top-0 z-20 shadow-md no-print border-b border-[rgba(160,190,255,0.25)]">
+    <div className="w-full liquid-glass sticky top-0 z-20 shadow-md no-print border-b border-[var(--border-subtle)]">
       {/* 1. Main Top Navbar (Liquid Glass, 72px) */}
-      <header className="h-[72px] px-4 sm:px-6 flex items-center justify-between gap-4 border-b border-[rgba(160,190,255,0.15)]">
+      <header className="min-h-[72px] h-auto px-2 py-3 sm:h-[72px] sm:px-6 sm:py-0 flex items-center justify-between gap-1 sm:gap-4 border-b border-[var(--border-subtle)]">
         {/* Logo left */}
-        <div className="flex items-center gap-3 shrink-0">
-          <div className="w-10 h-10 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center shadow-lg">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3 shrink-0">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl liquid-glass-tinted-blue flex items-center justify-center shadow-lg shrink-0">
             <svg
-              className="w-5 h-5 text-white"
+              className="w-4 h-4 sm:w-5 sm:h-5 text-white"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -112,10 +112,10 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-lg text-white tracking-tight drop-shadow-sm">
+              <span className="font-extrabold text-[13px] sm:text-lg text-[var(--text-primary)] tracking-tight whitespace-nowrap drop-shadow-sm">
                 Research Factory
               </span>
-              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r from-violet-600/40 to-pink-600/40 text-pink-200 font-bold border border-pink-400/30">
+              <span className="hidden sm:inline text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r from-violet-600/40 to-pink-600/40 text-pink-200 font-bold border border-pink-400/30">
                 PRO SAAS
               </span>
             </div>
@@ -152,12 +152,12 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Right Section: Glowing Pills & Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
           {/* BYOD Files Vault Pill */}
           <button
             type="button"
             onClick={onOpenUploader}
-            className="hidden sm:flex items-center gap-1.5 h-[40px] px-4 rounded-full liquid-glass-subtle hover:bg-[rgba(160,190,255,0.18)] text-xs font-semibold text-white transition-all border border-[rgba(160,190,255,0.25)]"
+            className="hidden lg:flex items-center gap-1.5 h-[42px] px-3.5 rounded-full liquid-glass-subtle hover:bg-[rgba(160,190,255,0.18)] text-xs font-semibold text-[var(--text-primary)] transition-all"
             title="Upload Custom Data Files (PDF, CSV, TXT)"
           >
             <UploadCloud className="w-4 h-4 text-[#4ADE80]" />
@@ -173,7 +173,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onOpenLibrary}
-            className="hidden sm:flex items-center gap-1.5 h-[40px] px-4 rounded-full liquid-glass-subtle hover:bg-[rgba(160,190,255,0.18)] text-xs font-semibold text-white transition-all border border-[rgba(160,190,255,0.25)]"
+            className="hidden lg:flex items-center gap-1.5 h-[42px] px-3.5 rounded-full liquid-glass-subtle hover:bg-[rgba(160,190,255,0.18)] text-xs font-semibold text-[var(--text-primary)] transition-all"
             title="Saved Intelligence Library"
           >
             <Bookmark className="w-4 h-4 text-[#60A5FA]" />
@@ -207,14 +207,15 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onOpenSettings}
-            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full liquid-glass-subtle hover:bg-[rgba(255,255,255,0.08)] text-xs font-semibold text-[#F5F7FF] transition-all border border-[rgba(255,255,255,0.10)]"
-            title="Model Config, Themes, Fonts & Languages"
+            className="flex items-center gap-1.5 h-10 sm:h-[42px] px-3 sm:px-3.5 rounded-full liquid-glass-subtle hover:bg-[rgba(255,255,255,0.08)] text-xs font-semibold text-[var(--text-primary)] transition-all"
+            title="Model Config & API Keys"
+            aria-label="Model Config & API Keys"
           >
-            <Sliders className="w-3.5 h-3.5 text-[rgba(255,255,255,0.7)]" />
-            <span className="hidden md:inline">{t('config')}</span>
+            <Sliders className="w-4 h-4 text-[var(--text-muted)]" />
+            <span className="hidden lg:inline">{t('config')}</span>
           </button>
 
-          {isRunning && (
+          {isRunning ? (
             <button
               type="button"
               onClick={onStop}
@@ -223,13 +224,27 @@ export const Header: React.FC<HeaderProps> = ({
               <StopCircle className="w-3.5 h-3.5 animate-spin" />
               <span>Abort</span>
             </button>
+          ) : (
+            <button
+              type="button"
+              onClick={onStart}
+              title="Launch research"
+              aria-label="Launch research"
+              disabled={!topicInput.trim()}
+              className="flex items-center gap-2 h-10 sm:h-[42px] px-3 sm:px-5 rounded-full bg-[#151A17] hover:bg-[#262E29] text-white text-xs font-bold transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+            >
+              <Play className="w-3.5 h-3.5 fill-white" />
+              <span className="hidden sm:inline">Launch</span>
+            </button>
           )}
         </div>
       </header>
 
-```tsx
       {/* 2. Desktop Navigation */}
-      <div className="hidden md:flex h-[46px] bg-[#F1F2F4] px-4 sm:px-6 items-center justify-between border-b border-[#E5E7EB] overflow-x-auto text-xs">
+      <nav
+        aria-label="Desktop Agent Navigation"
+        className="hidden md:flex h-[46px] bg-[var(--bg-secondary)] px-4 sm:px-6 items-center justify-between border-b border-[var(--border-subtle)] overflow-x-auto text-xs"
+      >
         <div className="flex items-center gap-1.5">
           <span className="text-[#6B7280] font-semibold text-[11px] uppercase tracking-wider mr-1 hidden sm:inline">
             Views:
@@ -245,8 +260,8 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-current={isSelected ? 'page' : undefined}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs transition-all shrink-0 ${
                   isSelected
-                    ? 'bg-white text-[#14181F] font-bold shadow-xs border border-[#E5E7EB]'
-                    : 'text-[#4B5563] hover:text-[#14181F] hover:bg-white/60 font-medium'
+                    ? 'bg-[var(--bg-card)] text-[var(--text-primary)] font-bold shadow-xs border border-[var(--border-card)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/10 font-medium'
                 }`}
               >
                 {v.icon}
@@ -273,15 +288,14 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
         </div>
-      </div>
+      </nav>
 
       {/* 3. Research Command Bar */}
-      <div className="px-4 sm:px-6 py-3 bg-white border-b border-[#E5E7EB]">
-```
-        <form onSubmit={handleSubmit} className="flex flex-wrap lg:flex-nowrap items-center gap-2.5 w-full">
+      <div className="px-4 sm:px-6 py-3 bg-[var(--bg-page)] border-b border-[var(--border-subtle)]">
+        <form onSubmit={handleSubmit} className="grid w-full min-w-0 grid-cols-1 sm:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] items-center gap-2.5">
           {/* Wide Pill Topic Input */}
-          <div className="relative flex-1 min-w-[280px]">
-            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.5)] pointer-events-none">
+          <div className="relative min-w-0 sm:col-span-2 xl:col-span-1">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] pointer-events-none">
               <Search className="w-4 h-4" />
             </div>
             <input
@@ -290,12 +304,12 @@ export const Header: React.FC<HeaderProps> = ({
               onChange={(e) => setTopicInput(e.target.value)}
               placeholder="Enter complex research topic, thesis, or technical domain..."
               disabled={isRunning}
-              className="w-full h-[42px] pl-10 pr-24 rounded-xl border border-[rgba(255,255,255,0.10)] focus:border-[#7C5CFF] focus:ring-1 focus:ring-[#7C5CFF]/40 text-xs sm:text-sm text-[#F5F7FF] placeholder-[rgba(255,255,255,0.40)] transition-all bg-[rgba(255,255,255,0.04)] backdrop-blur-md disabled:opacity-50"
+              className="w-full min-w-0 h-[44px] pl-10 pr-24 rounded-full border border-[var(--border-strong)] focus:border-[var(--border-focus)] focus:ring-1 focus:ring-[var(--border-focus)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-subtle)] transition-all bg-[var(--bg-card)] disabled:opacity-50"
             />
             <button
               type="button"
               onClick={onOpenPresets}
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-semibold text-[#F5F7FF] bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.14)] rounded-lg transition-colors border border-[rgba(255,255,255,0.12)] shadow-xs"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-semibold text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-card-hover)] rounded-lg transition-colors border border-[var(--border-subtle)] shadow-xs"
               title="Browse Curated Topic Presets"
             >
               Presets
@@ -303,34 +317,34 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Pill Dropdown: Report Persona */}
-          <div className="relative">
+          <div className="relative min-w-0 w-full xl:w-auto">
             <select
               value={persona}
               onChange={(e) => setPersona(e.target.value as ReportPersona)}
               disabled={isRunning}
-              className="h-[42px] appearance-none pl-3.5 pr-8 rounded-xl border border-[rgba(255,255,255,0.10)] focus:border-[#7C5CFF] bg-[rgba(255,255,255,0.04)] text-xs font-medium text-[#F5F7FF] hover:bg-[rgba(255,255,255,0.08)] transition-colors cursor-pointer"
+              className="w-full min-w-0 h-[44px] appearance-none pl-3 sm:pl-4 pr-8 sm:pr-9 rounded-full border border-[#D1D5DB] focus:border-[#14181F] bg-white text-xs font-semibold text-[#14181F] hover:bg-[#F8FAFC] transition-colors cursor-pointer xl:w-auto"
             >
-              <option value="executive" className="bg-[#0B0D1A] text-[#F5F7FF]">👔 Executive Brief</option>
-              <option value="academic" className="bg-[#0B0D1A] text-[#F5F7FF]">🎓 Academic Survey</option>
-              <option value="investment" className="bg-[#0B0D1A] text-[#F5F7FF]">💼 Investment Memo</option>
-              <option value="technical" className="bg-[#0B0D1A] text-[#F5F7FF]">🛠️ Technical Specs</option>
+              <option value="executive">👔 Executive Brief</option>
+              <option value="academic">🎓 Academic Survey</option>
+              <option value="investment">💼 Investment Memo</option>
+              <option value="technical">🛠️ Technical Specs</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-[rgba(255,255,255,0.5)] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-[var(--text-muted)] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Pill Dropdown: Depth */}
-          <div className="relative">
+          <div className="relative min-w-0 w-full xl:w-auto">
             <select
               value={depth}
               onChange={(e) => setDepth(e.target.value as ResearchDepth)}
               disabled={isRunning}
-              className="h-[42px] appearance-none pl-3.5 pr-8 rounded-xl border border-[rgba(255,255,255,0.10)] focus:border-[#7C5CFF] bg-[rgba(255,255,255,0.04)] text-xs font-medium text-[#F5F7FF] hover:bg-[rgba(255,255,255,0.08)] transition-colors cursor-pointer capitalize"
+              className="w-full min-w-0 h-[44px] appearance-none pl-3 sm:pl-4 pr-8 sm:pr-9 rounded-full border border-[#D1D5DB] focus:border-[#14181F] bg-white text-xs font-semibold text-[#14181F] hover:bg-[#F8FAFC] transition-colors cursor-pointer capitalize xl:w-auto"
             >
-              <option value="quick" className="bg-[#0B0D1A] text-[#F5F7FF]">⚡ Quick (4 Sources)</option>
-              <option value="standard" className="bg-[#0B0D1A] text-[#F5F7FF]">🔍 Standard (10 Sources)</option>
-              <option value="deep" className="bg-[#0B0D1A] text-[#F5F7FF]">🔬 Deep (18 Sources)</option>
+              <option value="quick">⚡ Quick (4 Sources)</option>
+              <option value="standard">🔍 Standard (10 Sources)</option>
+              <option value="deep">🔬 Deep (18 Sources)</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-[rgba(255,255,255,0.5)] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-[var(--text-muted)] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Red Team Toggle Pill */}
@@ -338,14 +352,14 @@ export const Header: React.FC<HeaderProps> = ({
             type="button"
             onClick={() => setRedTeamMode(!redTeamMode)}
             disabled={isRunning}
-            className={`flex items-center gap-1.5 h-[42px] px-3.5 rounded-xl border text-xs font-medium transition-all shrink-0 ${
+            className={`flex w-full xl:w-auto items-center justify-center gap-1.5 h-[44px] px-3 sm:px-4 rounded-full border text-xs font-semibold transition-all min-w-0 ${
               redTeamMode
                 ? 'bg-rose-500/20 border-rose-400/40 text-rose-200 shadow-[0_0_12px_rgba(244,63,94,0.25)]'
-                : 'bg-[rgba(255,255,255,0.04)] border-[rgba(255,255,255,0.10)] text-[rgba(255,255,255,0.7)] hover:text-[#F5F7FF] hover:bg-[rgba(255,255,255,0.08)]'
+                : 'bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)]'
             }`}
             title="Enable Adversarial Stress-Testing Mode"
           >
-            <Flame className={`w-3.5 h-3.5 ${redTeamMode ? 'text-rose-400 animate-pulse' : 'text-[rgba(255,255,255,0.5)]'}`} />
+            <Flame className={`w-3.5 h-3.5 ${redTeamMode ? 'text-rose-400 animate-pulse' : 'text-[var(--text-muted)]'}`} />
             <span>Red Team</span>
           </button>
 
@@ -353,7 +367,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="submit"
             disabled={isRunning || !topicInput.trim()}
-            className="flex items-center gap-1.5 h-[42px] px-5 rounded-xl bg-gradient-to-r from-[#7C5CFF] via-[#A855F7] to-[#EC4899] hover:from-[#8C70FF] hover:to-[#F459A4] text-white text-xs font-bold transition-all shadow-[0_0_20px_rgba(124,92,255,0.4)] disabled:opacity-40 shrink-0 border border-purple-300/30 active:scale-95"
+            className="flex w-full xl:w-auto items-center justify-center gap-1.5 h-[44px] px-3 sm:px-6 rounded-full bg-[#151A17] hover:bg-[#262E29] text-white text-xs font-bold transition-all shadow-xs disabled:opacity-50 min-w-0 whitespace-nowrap"
           >
             <Play className="w-3.5 h-3.5 fill-white" />
             <span>Launch Research</span>

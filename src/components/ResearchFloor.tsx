@@ -92,17 +92,17 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
   const isRunning = state.status === 'running';
 
   return (
-    <div className="w-full liquid-glass p-5 sm:p-7 lg:p-8 relative overflow-hidden">
+    <div className="w-full min-w-0 liquid-glass p-4 sm:p-6 lg:p-8 relative overflow-hidden">
       {/* Floor Section Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-[var(--border-subtle)] pb-4">
-        <div>
-          <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2.5 text-current">
+        <div className="min-w-0">
+          <h3 className="min-w-0 text-lg sm:text-xl font-bold flex flex-wrap items-center gap-2.5 break-words text-current">
             Autonomous Agent Pipeline
             <span className="text-xs font-mono font-medium px-2.5 py-0.5 rounded-full liquid-glass-subtle">
               5 Specialized Stations
             </span>
           </h3>
-          <p className="text-xs sm:text-sm opacity-70 pt-1">
+          <p className="text-xs sm:text-sm opacity-70 pt-1 break-words [overflow-wrap:anywhere]">
             Continuous inter-agent coordination over typed message bus with adaptive evaluator-optimizer feedback
           </p>
         </div>
@@ -116,7 +116,7 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
       </div>
 
       {/* 5 Agent Cards Pipeline Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 relative">
+      <div className="grid min-w-0 grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-5 relative">
         {AGENT_ORDER.map((agentId, index) => {
           const meta = AGENT_META[agentId];
           const agent = state.agents[agentId];
@@ -163,7 +163,7 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                 type="button"
                 onClick={() => onSelectAgentTab(agentId)}
                 title={meta.tooltip}
-                className={`w-full text-left p-4 sm:p-5 liquid-glass glass-panel-hover transition-all duration-200 relative group cursor-pointer flex flex-col justify-between h-[200px] ${
+                className={`w-full min-w-0 text-left p-4 sm:p-5 liquid-glass glass-panel-hover transition-all duration-200 relative group cursor-pointer flex flex-col justify-between min-h-[195px] h-full ${
                   isActive
                     ? 'ring-2 ring-cyan-400 shadow-[0_0_24px_rgba(34,211,238,0.35)] translate-y-[-2px]'
                     : ''
@@ -183,8 +183,8 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
 
                 {/* Card Top: Icon chip, stage number, name, status pill */}
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
+                  <div className="flex min-w-0 items-center justify-between gap-2 mb-2">
+                    <div className="flex min-w-0 items-center gap-2">
                       <div
                         className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.12)]"
                         style={{ backgroundColor: meta.bgTint }}
@@ -197,13 +197,13 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                     </div>
 
                     <span
-                      className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wider ${statusStyle}`}
+                      className={`max-w-full text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wider whitespace-normal text-center ${statusStyle}`}
                     >
                       {statusLabel}
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-[#F5F7FF] group-hover:text-white transition-colors truncate">
+                  <h4 className="min-w-0 text-sm font-bold text-[var(--text-primary)] group-hover:text-white transition-colors truncate">
                     {meta.name}
                   </h4>
                   <p className="text-[11px] text-[rgba(255,255,255,0.60)] line-clamp-1 mt-0.5">
@@ -224,8 +224,8 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                     />
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[rgba(255,255,255,0.72)]">
-                    <span className="truncate max-w-[120px] text-[#F5F7FF] font-medium">
+                  <div className="flex min-w-0 items-center justify-between gap-2 text-[11px] font-mono text-[var(--text-secondary)]">
+                    <span className="min-w-0 flex-1 truncate text-[var(--text-primary)] font-medium">
                       {agent.currentTask || (isCompleted ? 'Finished' : 'Waiting')}
                     </span>
                     {agent.durationMs ? (
@@ -243,16 +243,16 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
 
       {/* Curved Replan Loop Arrow: Critic back to Scout/Planner */}
       {hasReplanActive && (
-        <div className="mt-5 p-3.5 bg-[rgba(245,158,11,0.08)] border border-amber-400/30 rounded-xl flex items-center justify-between text-xs text-amber-200">
-          <div className="flex items-center gap-2.5">
+        <div className="mt-4 p-3.5 bg-[rgba(245,158,11,0.08)] border border-amber-400/30 rounded-xl flex flex-wrap items-start justify-between gap-3 text-xs text-amber-200">
+          <div className="flex min-w-0 flex-1 items-start gap-2.5">
             <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
               <CornerUpLeft className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
             </div>
-            <div>
-              <span className="font-bold mr-1 text-[#F5F7FF]">
+            <div className="min-w-0 break-words [overflow-wrap:anywhere]">
+              <span className="font-bold mr-1 text-[var(--text-primary)]">
                 Adaptive Feedback Loop #{replanHistory.length}:
               </span>
-              <span className="text-[rgba(255,255,255,0.72)]">
+              <span className="text-[var(--text-secondary)]">
                 {replanHistory[replanHistory.length - 1].reason} (Redirected from Critic to Scout)
               </span>
             </div>

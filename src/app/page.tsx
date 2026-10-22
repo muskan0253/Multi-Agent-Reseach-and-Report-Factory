@@ -426,7 +426,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex bg-[var(--bg-page)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-300 relative overflow-hidden">
+    <div className="min-h-screen min-w-0 flex bg-[var(--bg-page)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-300 relative overflow-hidden">
       {/* 1. Subtle radial vignette overlay */}
       <div className="fixed inset-0 pointer-events-none z-0 bg-vignette opacity-70" />
 
@@ -456,7 +456,7 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto bg-transparent">
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-x-hidden overflow-y-auto bg-transparent">
         {/* Top Control Navbar, Sub-bar & Filter Row */}
         <Header
           state={workflowState}
@@ -481,7 +481,7 @@ export default function HomePage() {
         />
 
         {/* Dynamic Page Views */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 xl:p-10 w-full space-y-6 pb-28">
+        <main className="flex-1 min-w-0 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 w-full space-y-6 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-28">
           {workflowState.status === 'error' && (
             <div className="p-4 bg-rose-50 border border-rose-300 rounded-2xl flex items-center justify-between gap-3 text-rose-900 shadow-xs">
               <div className="flex items-center gap-3">

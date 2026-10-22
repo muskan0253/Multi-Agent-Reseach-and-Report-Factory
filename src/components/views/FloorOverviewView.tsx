@@ -100,28 +100,28 @@ export const FloorOverviewView: React.FC<FloorOverviewViewProps> = ({
   ];
 
   return (
-    <div className="space-y-6 pb-20 w-full">
+    <div className="min-w-0 w-full space-y-6 pb-20">
       {/* 1. Topic Header (VisionOS Floating Liquid Glass Hero) */}
-      <div className="liquid-glass p-6 sm:p-7 lg:p-8 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 relative overflow-hidden">
-        <div className="flex items-start sm:items-center gap-5 sm:gap-6 relative z-10 flex-1">
+      <div className="min-w-0 liquid-glass p-4 sm:p-8 lg:p-10 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 relative overflow-hidden">
+        <div className="flex min-w-0 items-start sm:items-center gap-3 sm:gap-6 relative z-10 flex-1">
           {/* Glowing Icon Tile */}
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center shrink-0 shadow-sm">
-            <Sparkles className="w-7 h-7 sm:w-8 sm:h-8 text-current" />
+          <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center shrink-0 shadow-sm">
+            <Sparkles className="w-7 h-7 sm:w-10 sm:h-10 text-current" />
           </div>
 
-          <div className="space-y-2 flex-1">
+          <div className="min-w-0 space-y-2 flex-1">
             {/* Meta Tags & Status Row */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[rgba(255,255,255,0.10)] px-3 py-0.5 rounded-full border border-[rgba(255,255,255,0.15)] shadow-xs">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[rgba(255,255,255,0.10)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.15)] shadow-xs break-words [overflow-wrap:anywhere]">
                 Active Research Subject
               </span>
-              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-0.5 rounded-full border border-[rgba(255,255,255,0.08)]">
+              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.08)] break-words [overflow-wrap:anywhere]">
                 Depth: <strong className="capitalize text-[#F5F7FF] font-semibold">{state.depth}</strong>
               </span>
-              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-0.5 rounded-full border border-[rgba(255,255,255,0.08)]">
+              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.08)] break-words [overflow-wrap:anywhere]">
                 Persona: <strong className="capitalize text-[#F5F7FF] font-semibold">{state.persona}</strong>
               </span>
-              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-0.5 rounded-full border border-[rgba(255,255,255,0.08)]">
+              <span className="text-xs font-medium text-[rgba(255,255,255,0.72)] bg-[rgba(255,255,255,0.04)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.08)] break-words [overflow-wrap:anywhere]">
                 Scope: <strong className="capitalize text-[#F5F7FF] font-semibold">{state.searchScope || 'Global Web & Papers'}</strong>
               </span>
               {state.redTeamMode && (
@@ -149,8 +149,8 @@ export const FloorOverviewView: React.FC<FloorOverviewViewProps> = ({
               )}
             </div>
 
-            {/* Main Big Subject Title with Subtle Gradient */}
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-snug bg-gradient-to-r from-[#FFFFFF] via-[#F0F3FF] to-[#D5DCFF] bg-clip-text text-transparent">
+            {/* Main Big Subject Title */}
+            <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-snug bg-gradient-to-r from-[#FFFFFF] via-[#F0F3FF] to-[#D5DCFF] bg-clip-text text-transparent break-words [overflow-wrap:anywhere]">
               {state.topic || 'Commercial Viability of Solid-State Batteries by 2030'}
             </h1>
 
@@ -161,11 +161,11 @@ export const FloorOverviewView: React.FC<FloorOverviewViewProps> = ({
           </div>
         </div>
 
-        {/* Action Buttons on the Right Aligned */}
-        <div className="flex items-center gap-2.5 relative z-10 shrink-0 mt-2 xl:mt-0">
+        {/* Action Buttons on the Right */}
+        <div className="flex w-full sm:w-auto flex-wrap items-center gap-2 sm:gap-3 relative z-10 min-w-0 mt-2 xl:mt-0">
           <button
             onClick={() => onNavigate('report')}
-            className={`flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-md active:scale-95 ${
+            className={`flex max-w-full items-center gap-2 px-4 sm:px-6 py-3 text-xs sm:text-sm font-bold rounded-full transition-all shadow-md active:scale-95 break-words ${
               report
                 ? 'bg-gradient-to-r from-[#7C5CFF] via-[#A855F7] to-[#EC4899] text-white shadow-[0_0_20px_rgba(124,92,255,0.4)] border border-purple-300/30'
                 : 'bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] text-[#F5F7FF] border border-[rgba(255,255,255,0.12)]'
@@ -185,7 +185,7 @@ export const FloorOverviewView: React.FC<FloorOverviewViewProps> = ({
       </div>
 
       {/* Telemetry & Speedometer Bar */}
-      <div className="liquid-glass p-3 sm:p-3.5 !rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="liquid-glass min-w-0 p-3 sm:p-3.5 !rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-3">
           <span className="liquid-glass-subtle !px-3 !py-1 flex items-center gap-1.5 font-bold text-[11px] tracking-wide">
             <Zap className="w-3.5 h-3.5 text-cyan-400" /> SPEEDOMETER
@@ -213,35 +213,36 @@ export const FloorOverviewView: React.FC<FloorOverviewViewProps> = ({
       </div>
 
       {/* 2. Row of 5 KPI Cards (Translucent Theme-Responsive Glass Cards) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid min-w-0 grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-5">
         {kpis.map((kpi) => (
           <div
             key={kpi.id}
-            className="liquid-glass glass-panel-hover p-4 sm:p-5 flex flex-col justify-between min-h-[140px]"
+            className="liquid-glass glass-panel-hover min-w-0 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] relative overflow-hidden"
+            style={{ borderTopWidth: '4px', borderTopColor: kpi.color }}
           >
             {/* KPI Label with Icon */}
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs sm:text-sm font-medium opacity-85 flex items-center gap-1.5">
+            <div className="flex min-w-0 items-start justify-between gap-2 mb-2">
+              <span className="min-w-0 text-xs sm:text-sm font-medium opacity-85 flex items-center gap-1.5 break-words [overflow-wrap:anywhere]">
                 {kpi.icon}
                 {kpi.label}
               </span>
-              <span title={kpi.info} className="cursor-help opacity-50 hover:opacity-100">
-                <Info className="w-3.5 h-3.5" />
+              <span title={kpi.info} className="shrink-0 cursor-help opacity-50 hover:opacity-100">
+                <Info className="w-4 h-4" />
               </span>
             </div>
 
             {/* Big 36px+ JetBrains Mono Number */}
-            <div className="my-1.5">
-              <span className="text-3xl sm:text-4xl font-extrabold font-mono tracking-tight drop-shadow-sm text-current">
+            <div className="my-2 min-w-0">
+              <span className="text-3xl sm:text-4xl font-extrabold font-mono tracking-tight drop-shadow-sm text-current break-words">
                 {kpi.value}
               </span>
             </div>
 
-            {/* Trend / Status Indicator */}
-            <div className="flex items-center gap-1.5 text-xs font-medium pt-2 border-t border-[rgba(255,255,255,0.08)]">
-              <span className="text-xs font-mono text-[rgba(255,255,255,0.60)] truncate">
-                {kpi.trend}
-              </span>
+            {/* Trend Indicator */}
+            <div className="flex flex-wrap items-center gap-1.5 text-xs font-medium pt-2 border-t border-[var(--border-subtle)]">
+              <TrendingUp className="w-4 h-4 text-[#16A34A]" />
+              <span className="text-[#16A34A] font-bold break-words">{kpi.trend}</span>
+              <span className="text-[#9CA3AF] text-xs">this run</span>
             </div>
           </div>
         ))}
