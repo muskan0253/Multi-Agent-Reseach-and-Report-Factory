@@ -21,11 +21,10 @@ import {
   Repeat,
   Sun,
   Moon,
-  Globe,
 } from 'lucide-react';
 import { ResearchWorkflowState, ResearchDepth, ReportPersona, SearchScope } from '../lib/types';
 import { NavView } from './Sidebar';
-import { usePreferences } from '../context/PreferencesContext';
+import { usePreferences, AppTheme } from '../context/PreferencesContext';
 
 interface HeaderProps {
   state: ResearchWorkflowState;
@@ -231,13 +230,15 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="px-4 sm:px-6 py-2.5 bg-[rgba(255,255,255,0.02)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.08)]">
         <form onSubmit={handleSubmit} className="flex flex-wrap lg:flex-nowrap items-center gap-2.5 w-full">
           {/* Wide Pill Topic Input */}
-          <div className="relative flex-1 min-w-[280px]">
+          <div className="relative w-full flex-1 min-w-0 sm:w-auto sm:min-w-[280px]">
             <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.5)] pointer-events-none">
               <Search className="w-4 h-4" />
             </div>
             <input
               type="text"
               value={topicInput}
+              aria-label="Research topic"
+              aria-describedby={topicInput.trim() ? undefined : 'research-topic-hint'}
               onChange={(e) => setTopicInput(e.target.value)}
               placeholder="Enter complex research topic, thesis, or technical domain..."
               disabled={isRunning}
@@ -288,6 +289,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={() => setRedTeamMode(!redTeamMode)}
+            aria-pressed={redTeamMode}
             disabled={isRunning}
             className={`flex items-center gap-1.5 h-[42px] px-3.5 rounded-xl border text-xs font-medium transition-all shrink-0 ${
               redTeamMode
@@ -310,6 +312,11 @@ export const Header: React.FC<HeaderProps> = ({
             <span>Launch Research</span>
           </button>
         </form>
+        {!topicInput.trim() && !isRunning && (
+          <p id="research-topic-hint" role="status" className="mt-2 pl-1 text-[11px] text-[rgba(255,255,255,0.65)]">
+            Enter a research topic to enable Launch Research.
+          </p>
+        )}
       </div>
     </div>
   );

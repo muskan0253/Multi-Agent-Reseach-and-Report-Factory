@@ -14,14 +14,22 @@ import {
   Search,
   PenTool,
 } from 'lucide-react';
-import { CriticReview, AgentInfo } from '../../lib/types';
+import { CriticReview, AgentInfo, ResearchWorkflowState } from '../../lib/types';
+import { AgentStatePanel } from '../AgentStatePanel';
 
 interface CriticViewProps {
   critic?: CriticReview;
   agent: AgentInfo;
+  workflowStatus?: ResearchWorkflowState['status'];
+  workflowError?: string;
 }
 
-export const CriticView: React.FC<CriticViewProps> = ({ critic, agent }) => {
+export const CriticView: React.FC<CriticViewProps> = ({
+  critic,
+  agent,
+  workflowStatus,
+  workflowError,
+}) => {
   return (
     <div className="space-y-6 pb-20 w-full">
       {/* Header Banner */}
@@ -64,15 +72,16 @@ export const CriticView: React.FC<CriticViewProps> = ({ critic, agent }) => {
       </div>
 
       {!critic ? (
-        <div className="bg-white rounded-2xl border border-[#E5E7EB] p-16 text-center text-[#6B7280] space-y-3 shadow-xs">
-          <ShieldCheck className="w-12 h-12 mx-auto text-[#EF4444] animate-pulse" />
-          <h3 className="text-base font-bold text-[#14181F]">
-            Epistemic Audit in Standby
-          </h3>
-          <p className="text-xs text-[#6B7280] max-w-md mx-auto">
-            The Critic Agent will analyze extracted findings, detect gaps, and audit the draft once the Reader stage completes.
-          </p>
-        </div>
+        <AgentStatePanel
+          stageName="Epistemic Critic"
+          outputName="epistemic audit"
+          status={agent.status}
+          workflowStatus={workflowStatus}
+          icon={<ShieldCheck className="w-10 h-10 text-[#EF4444]" aria-hidden="true" />}
+          currentTask={agent.currentTask}
+          errorMessage={workflowError}
+          idleMessage="The Critic will audit findings and the draft after the Reader and Synthesizer have produced their outputs."
+        />
       ) : (
         <div className="space-y-6">
           {/* Agentic Decision & Replanning Directive Callout */}

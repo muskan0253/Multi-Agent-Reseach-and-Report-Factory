@@ -519,6 +519,8 @@ export default function HomePage() {
             <PlannerView
               plan={workflowState.plan}
               agent={workflowState.agents.planner}
+              workflowStatus={workflowState.status}
+              workflowError={workflowState.error}
               onUpdatePlan={handleUpdatePlan}
             />
           )}
@@ -527,6 +529,8 @@ export default function HomePage() {
             <SearcherView
               sources={workflowState.sources}
               agent={workflowState.agents.searcher}
+              workflowStatus={workflowState.status}
+              workflowError={workflowState.error}
               onToggleSource={handleToggleSource}
               onAddCustomSource={handleAddCustomSource}
             />
@@ -536,6 +540,8 @@ export default function HomePage() {
             <ReaderView
               facts={workflowState.facts}
               agent={workflowState.agents.reader}
+              workflowStatus={workflowState.status}
+              workflowError={workflowState.error}
               onDeleteFact={handleDeleteFact}
               onAddFact={handleAddFact}
             />
@@ -545,6 +551,8 @@ export default function HomePage() {
             <CriticView
               critic={workflowState.criticReview}
               agent={workflowState.agents.critic}
+              workflowStatus={workflowState.status}
+              workflowError={workflowState.error}
             />
           )}
 

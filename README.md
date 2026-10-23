@@ -67,11 +67,13 @@ The app includes both an interactive dashboard and an orchestration layer that c
 
 ## Getting Started
 
-1. Install dependencies:
+1. Install the exact dependency versions recorded in the lockfile:
 
 ```bash
-npm install
+npm ci
 ```
+
+Use `npm install` instead when intentionally updating dependencies and the lockfile.
 
 2. Start the local development server:
 
@@ -104,11 +106,19 @@ npm test         # run the test suite
 
 ## Environment Variables
 
-This project can run in simulated mode without any API keys. To enable live Gemini generation, create a `.env.local` file and add:
+This project can run without API keys using its local deterministic reasoning. To enable live Gemini generation, create a `.env.local` file in the project root:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
 ```
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `GEMINI_API_KEY` | No | Server-side Gemini API key. Omit it to use local reasoning. |
+| `MOCK_LLM` | No | Set to `true` to force local reasoning, even when an API key is configured. |
+| `NEXT_PUBLIC_GEMINI_API_KEY` | No | Legacy fallback; avoid it because `NEXT_PUBLIC_` variables can be exposed to browser bundles. Use `GEMINI_API_KEY` instead. |
+
+Keep API keys in `.env.local`; do not prefix secret keys with `NEXT_PUBLIC_`.
 
 ## How to Use
 
@@ -134,6 +144,12 @@ Relevant docs are located in the `docs/` directory:
 docker build -t research-factory:latest .
 docker run -p 3000:3000 research-factory:latest
 ```
+
+## Troubleshooting
+
+- **The development server cannot bind to port 3000:** stop the process using that port, or update the `-p 3000` argument in the `dev` script and open the new port.
+- **Results use local reasoning instead of Gemini:** check that `GEMINI_API_KEY` is set in `.env.local`, restart the development server after changing it, and confirm `MOCK_LLM` is not set to `true`.
+- **Dependencies do not match the lockfile:** run `npm ci` from the project root to reinstall the recorded dependency versions.
 
 ## Notes
 

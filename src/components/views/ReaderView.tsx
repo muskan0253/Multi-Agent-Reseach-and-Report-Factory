@@ -2,11 +2,14 @@
 
 import React, { useState } from 'react';
 import { BookOpen, Quote, Sparkles, Filter, CheckCircle2, Trash2, Plus } from 'lucide-react';
-import { ExtractedFact, AgentInfo } from '../../lib/types';
+import { ExtractedFact, AgentInfo, ResearchWorkflowState } from '../../lib/types';
+import { AgentStatePanel } from '../AgentStatePanel';
 
 interface ReaderViewProps {
   facts: ExtractedFact[];
   agent: AgentInfo;
+  workflowStatus?: ResearchWorkflowState['status'];
+  workflowError?: string;
   onDeleteFact?: (id: string) => void;
   onAddFact?: (fact: Partial<ExtractedFact>) => void;
 }
@@ -14,6 +17,8 @@ interface ReaderViewProps {
 export const ReaderView: React.FC<ReaderViewProps> = ({
   facts,
   agent,
+  workflowStatus,
+  workflowError,
   onDeleteFact,
   onAddFact,
 }) => {
@@ -58,21 +63,21 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
   return (
     <div className="space-y-6 pb-20 w-full">
       {/* Header Banner */}
-      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(16,24,40,0.06)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="liquid-glass p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-[#FFFBEB] border border-[#FDE68A] flex items-center justify-center text-[#F59E0B] shrink-0">
             <BookOpen className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-[#14181F]">
+              <h2 className="text-lg font-bold text-current">
                 Stage 03: Deep Reader
               </h2>
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase bg-amber-50 text-amber-800 font-bold border border-amber-200">
                 {agent.status}
               </span>
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs opacity-70">
               Mines retrieved documents for granular quantitative metrics, empirical results, expert citations, and context quotes.
             </p>
           </div>
@@ -81,16 +86,16 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsAddingFact(!isAddingFact)}
-            className="flex items-center gap-1.5 h-[38px] px-4 rounded-full bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] border border-[#D1D5DB] transition-all shadow-xs"
+            className="flex items-center gap-1.5 h-[38px] px-4 rounded-full liquid-glass-subtle hover:opacity-100 text-xs font-semibold text-current transition-all shadow-xs"
           >
             <Plus className="w-4 h-4 text-[#F59E0B]" />
             <span>Add Verified Fact</span>
           </button>
           <div className="text-right hidden md:block">
-            <span className="text-[10px] font-mono text-[#9CA3AF] block uppercase">
+            <span className="text-[10px] font-mono opacity-50 block uppercase">
               Fact Bank Size
             </span>
-            <span className="text-sm font-mono font-bold text-[#14181F]">
+            <span className="text-sm font-mono font-bold text-current">
               {facts.length} Verified Claims
             </span>
           </div>
@@ -110,12 +115,15 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
             <input
               type="text"
               value={newFactText}
+              aria-label="Verified fact"
+              required
               onChange={(e) => setNewFactText(e.target.value)}
               placeholder="e.g. 'Production pilot achieves 450 Wh/kg specific energy density in initial test runs.'"
               className="sm:col-span-3 bg-white px-3.5 py-2.5 rounded-full border border-[#D1D5DB] text-xs text-[#14181F] placeholder-[#9CA3AF] focus:border-[#14181F] focus:outline-none"
             />
             <select
               value={newFactCategory}
+              aria-label="Fact category"
               onChange={(e) => setNewFactCategory(e.target.value as any)}
               className="bg-white px-3.5 py-2.5 rounded-full border border-[#D1D5DB] text-xs text-[#14181F] focus:border-[#14181F] focus:outline-none"
             >
@@ -146,13 +154,16 @@ export const ReaderView: React.FC<ReaderViewProps> = ({
       )}
 
       {facts.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-[#E5E7EB] p-16 text-center text-[#6B7280] space-y-3 shadow-xs">
-          <BookOpen className="w-12 h-12 mx-auto text-[#F59E0B] animate-pulse" />
-          <h3 className="text-base font-bold text-[#14181F]">Fact Bank Empty</h3>
-          <p className="text-xs text-[#6B7280] max-w-md mx-auto">
-            The Deep Reader agent will ingest literature payloads and extract verified data points as the pipeline progresses.
-          </p>
-        </div>
+        <AgentStatePanel
+          stageName="Deep Reader"
+          outputName="verified facts"
+          status={agent.status}
+          workflowStatus={workflowStatus}
+          icon={<BookOpen className="w-10 h-10 text-[#F59E0B]" aria-hidden="true" />}
+          currentTask={agent.currentTask}
+          errorMessage={workflowError}
+          idleMessage="Verified facts will appear here after the Reader processes the sources found by the Literature Scout."
+        />
       ) : (
         <div className="space-y-4">
           {/* Category Filter Pills */}

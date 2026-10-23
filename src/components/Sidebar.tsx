@@ -126,6 +126,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          aria-expanded={!isCollapsed}
           className="p-1 rounded-full text-[#9AA8D6] hover:text-white hover:bg-[rgba(160,190,255,0.15)] transition-colors"
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
@@ -141,6 +143,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => setCurrentView(item.id)}
+              aria-label={item.label}
+              aria-current={isSelected ? 'page' : undefined}
               title={isCollapsed ? item.label : undefined}
               className={`w-full flex items-center ${
                 isCollapsed ? 'justify-center p-2' : 'gap-2.5 px-3 py-2'
@@ -164,6 +168,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Workspace Tools */}
         <button
           onClick={onOpenUploader}
+          aria-label={t('vault')}
           title={isCollapsed ? t('vault') : undefined}
           className={`w-full flex items-center ${
             isCollapsed ? 'justify-center p-2' : 'gap-2.5 px-3 py-2'
@@ -175,6 +180,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <button
           onClick={onOpenLibrary}
+          aria-label={t('archive')}
           title={isCollapsed ? t('archive') : undefined}
           className={`w-full flex items-center ${
             isCollapsed ? 'justify-center p-2' : 'gap-2.5 px-3 py-2'
@@ -186,6 +192,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <button
           onClick={onOpenPresets}
+          aria-label={t('presets')}
           title={isCollapsed ? t('presets') : undefined}
           className={`w-full flex items-center ${
             isCollapsed ? 'justify-center p-2' : 'gap-2.5 px-3 py-2'
@@ -197,6 +204,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <button
           onClick={onOpenSettings}
+          aria-label={t('config')}
           title={isCollapsed ? t('config') : undefined}
           className={`w-full flex items-center ${
             isCollapsed ? 'justify-center p-2' : 'gap-2.5 px-3 py-2'

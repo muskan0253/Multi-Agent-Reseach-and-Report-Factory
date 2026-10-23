@@ -13,17 +13,22 @@ import {
   Plus,
   Trash2,
 } from 'lucide-react';
-import { ResearchPlan, AgentInfo } from '../../lib/types';
+import { ResearchPlan, AgentInfo, ResearchWorkflowState } from '../../lib/types';
+import { AgentStatePanel } from '../AgentStatePanel';
 
 interface PlannerViewProps {
   plan?: ResearchPlan;
   agent: AgentInfo;
+  workflowStatus?: ResearchWorkflowState['status'];
+  workflowError?: string;
   onUpdatePlan?: (updatedPlan: ResearchPlan) => void;
 }
 
 export const PlannerView: React.FC<PlannerViewProps> = ({
   plan,
   agent,
+  workflowStatus,
+  workflowError,
   onUpdatePlan,
 }) => {
   const [newQuestion, setNewQuestion] = useState('');
@@ -104,15 +109,16 @@ export const PlannerView: React.FC<PlannerViewProps> = ({
       </div>
 
       {!plan ? (
-        <div className="liquid-glass p-16 text-center opacity-80 space-y-3">
-          <Compass className="w-12 h-12 mx-auto text-[#6366F1] animate-spin" />
-          <h3 className="text-base font-bold text-current">
-            Awaiting Research Strategy Formulation
-          </h3>
-          <p className="text-xs opacity-70 max-w-md mx-auto">
-            Launch a research topic from the top bar to watch the Planner agent decompose requirements and construct targeted inquiry vectors.
-          </p>
-        </div>
+        <AgentStatePanel
+          stageName="Strategic Planner"
+          outputName="research plan"
+          status={agent.status}
+          workflowStatus={workflowStatus}
+          icon={<Compass className="w-10 h-10 text-[#6366F1]" aria-hidden="true" />}
+          currentTask={agent.currentTask}
+          errorMessage={workflowError}
+          idleMessage="Launch a research topic from the top bar to have the Planner decompose requirements and build targeted inquiry vectors."
+        />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Column: Scope, Hypotheses & Audience (6 cols) */}

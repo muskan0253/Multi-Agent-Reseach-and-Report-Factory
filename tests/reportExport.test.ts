@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { formatReportForDownload } from "../src/lib/reportExport";
+import {
+  formatReportForDownload,
+  generateExecutiveSummaryOnly,
+} from "../src/lib/reportExport";
 
 describe("Report Export Utility Suite", () => {
   it("formats markdown document with frontmatter metadata header", () => {
@@ -11,6 +14,6 @@ describe("Report Export Utility Suite", () => {
 });
 
   it("formats executive summary standalone document", () => {
-    // dynamic test check
-    expect(true).toBe(true);
+  const output = generateExecutiveSummaryOnly("Test Title", "Key findings");
+  expect(output).toBe("# Test Title\n\n## Executive Summary\nKey findings\n");
   });

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* Light SaaS Design Tokens (Default) */
   --bg-page: #FFFFFF;
   --bg-secondary: #F1F2F4;
   --bg-card: #FFFFFF;
@@ -53,7 +52,6 @@
   --foreground: var(--text-primary);
 }
 
-/* Dark Pro Theme */
 [data-theme='dark'] {
   --bg-page: #0B0F19;
   --bg-secondary: #111827;
@@ -78,7 +76,6 @@
   --accent-lavender-text: #F3E8FF;
 }
 
-/* Midnight Obsidian Theme */
 [data-theme='midnight'] {
   --bg-page: #030712;
   --bg-secondary: #0B1120;
@@ -397,7 +394,7 @@ body {
 
 /* Accessible visible focus states */
 *:focus-visible {
-  outline: 2px solid #14181F;
+  outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
 

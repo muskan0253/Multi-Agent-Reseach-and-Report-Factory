@@ -24,6 +24,7 @@ import {
   ZoomOut,
 } from 'lucide-react';
 import { FinalReport, ResearchWorkflowState } from '../lib/types';
+import { AgentStatePanel } from './AgentStatePanel';
 import { usePreferences, AppFont } from '../context/PreferencesContext';
 
 interface ReportViewerProps {
@@ -45,6 +46,13 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
 
   const markdownToRender = report?.markdownContent || streamingChunk || '';
   const isWriterActive = state.activeAgent === 'writer';
+  const writerStatus =
+    state.status === 'error'
+      ? 'error'
+      : state.status === 'running' &&
+          (state.agents.writer.status === 'idle' || state.agents.writer.status === 'waiting')
+        ? 'waiting'
+        : state.agents.writer.status;
 
   // Extract table of contents from markdown headings
   const tableOfContents = useMemo(() => {
@@ -322,17 +330,17 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
         style={{ fontSize: `${(17 * zoomLevel) / 100}px` }}
       >
         {!markdownToRender ? (
-          <div className="text-center py-20 max-w-md mx-auto space-y-3">
-            <div className="w-14 h-14 rounded-2xl bg-[#FAF5FF] border border-[#E9D5FF] flex items-center justify-center mx-auto text-[#A855F7]">
-              <PenTool className="w-7 h-7" />
-            </div>
-            <h4 className="text-base font-bold text-[#14181F]">
-              Whitepaper Awaiting Synthesis
-            </h4>
-            <p className="text-xs text-[#6B7280] leading-relaxed">
-              Launch research to activate the 5-agent pipeline. The Executive Synthesizer will stream the comprehensive, citation-backed whitepaper here.
-            </p>
-          </div>
+          <AgentStatePanel
+            stageName="Executive Synthesizer"
+            outputName="whitepaper"
+            status={writerStatus}
+            workflowStatus={state.status}
+            icon={<PenTool className="w-7 h-7 text-[#A855F7]" aria-hidden="true" />}
+            currentTask={state.agents.writer.currentTask}
+            errorMessage={state.error}
+            idleMessage="Launch research to activate the pipeline. The Executive Synthesizer will stream the citation-backed whitepaper here."
+            className="max-w-2xl mx-auto"
+          />
         ) : (
           <div className="max-w-[760px] mx-auto space-y-8">
             {/* Whitepaper Title Banner */}

@@ -12,11 +12,14 @@ import {
   Trash2,
   Plus,
 } from 'lucide-react';
-import { SearchSource, AgentInfo } from '../../lib/types';
+import { SearchSource, AgentInfo, ResearchWorkflowState } from '../../lib/types';
+import { AgentStatePanel } from '../AgentStatePanel';
 
 interface SearcherViewProps {
   sources: SearchSource[];
   agent: AgentInfo;
+  workflowStatus?: ResearchWorkflowState['status'];
+  workflowError?: string;
   onToggleSource?: (id: string) => void;
   onAddCustomSource?: (source: Partial<SearchSource>) => void;
 }
@@ -24,6 +27,8 @@ interface SearcherViewProps {
 export const SearcherView: React.FC<SearcherViewProps> = ({
   sources,
   agent,
+  workflowStatus,
+  workflowError,
   onToggleSource,
   onAddCustomSource,
 }) => {
@@ -32,6 +37,7 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
   const [customTitle, setCustomTitle] = useState('');
   const [customUrl, setCustomUrl] = useState('');
   const [isAddingSource, setIsAddingSource] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const uniqueDomains = Array.from(new Set(sources.map((s) => s.domain)));
 
@@ -50,18 +56,26 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
     if (!customTitle.trim() || !onAddCustomSource) return;
 
     let domain = 'custom-source.org';
-    try {
-      if (customUrl.trim()) {
-        domain = new URL(customUrl).hostname.replace(/^www\./, '');
+    const normalizedUrl = customUrl.trim();
+    if (normalizedUrl) {
+      try {
+        const parsedUrl = new URL(normalizedUrl);
+        if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+          setFormError('Source URL must begin with http:// or https://.');
+          return;
+        }
+        domain = parsedUrl.hostname.replace(/^www\./, '');
+      } catch {
+        setFormError('Enter a valid URL beginning with http:// or https://.');
+        return;
       }
-    } catch {
-      // default domain
     }
 
+    setFormError('');
     onAddCustomSource({
       id: `src-user-${Date.now()}`,
       title: customTitle.trim(),
-      url: customUrl.trim() || '#',
+      url: normalizedUrl || '#',
       domain,
       snippet: `User injected custom research source for targeted analysis: "${customTitle.trim()}".`,
       publishDate: new Date().toISOString().split('T')[0],
@@ -131,6 +145,8 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
             <input
               type="text"
               value={customTitle}
+              aria-label="Source title"
+              required
               onChange={(e) => setCustomTitle(e.target.value)}
               placeholder="Article / Whitepaper Title (e.g. 'Nature Solid-State Energy Density Report 2025')"
               className="bg-white px-3.5 py-2.5 rounded-full border border-[#D1D5DB] text-xs text-[#14181F] placeholder-[#9CA3AF] focus:border-[#14181F] focus:outline-none"
@@ -138,11 +154,22 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
             <input
               type="text"
               value={customUrl}
-              onChange={(e) => setCustomUrl(e.target.value)}
+              aria-label="Source URL (optional)"
+              aria-invalid={Boolean(formError)}
+              aria-describedby={formError ? 'source-url-error' : undefined}
+              onChange={(e) => {
+                setCustomUrl(e.target.value);
+                setFormError('');
+              }}
               placeholder="URL (e.g. 'https://nature.com/articles/s41586-2025')"
               className="bg-white px-3.5 py-2.5 rounded-full border border-[#D1D5DB] text-xs text-[#14181F] placeholder-[#9CA3AF] focus:border-[#14181F] focus:outline-none"
             />
           </div>
+          {formError && (
+            <p id="source-url-error" role="alert" className="text-xs text-rose-600">
+              {formError}
+            </p>
+          )}
           <div className="flex items-center justify-end gap-2">
             <button
               type="button"
@@ -163,15 +190,16 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
       )}
 
       {sources.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-[#E5E7EB] p-16 text-center text-[#6B7280] space-y-3 shadow-xs">
-          <Search className="w-12 h-12 mx-auto text-[#06B6D4] animate-pulse" />
-          <h3 className="text-base font-bold text-[#14181F]">
-            Literature Scout in Standby
-          </h3>
-          <p className="text-xs text-[#6B7280] max-w-md mx-auto">
-            Once the research pipeline starts, the Scout will query academic repositories and live web feeds to discover reference documents.
-          </p>
-        </div>
+        <AgentStatePanel
+          stageName="Literature Scout"
+          outputName="sources"
+          status={agent.status}
+          workflowStatus={workflowStatus}
+          icon={<Search className="w-10 h-10 text-[#06B6D4]" aria-hidden="true" />}
+          currentTask={agent.currentTask}
+          errorMessage={workflowError}
+          idleMessage="Start a research run to have the Scout search academic repositories and web sources."
+        />
       ) : (
         <div className="space-y-4">
           {/* Filter & Domain Controls */}
@@ -215,8 +243,14 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
           </div>
 
           {/* Sources Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredSources.map((src, i) => {
+          {filteredSources.length === 0 ? (
+            <div className="liquid-glass p-8 text-center space-y-2">
+              <h3 className="text-base font-bold text-current">No matching sources</h3>
+              <p className="text-xs opacity-70">Try another search term or choose a different domain.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredSources.map((src, i) => {
               const isEnabled = src.enabled !== false;
 
               return (
@@ -282,8 +316,9 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
                   </div>
                 </div>
               );
-            })}
-          </div>
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>

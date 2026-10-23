@@ -154,6 +154,7 @@ export const ResearchLibraryModal: React.FC<ResearchLibraryModalProps> = ({
                   </button>
                   <button
                     onClick={() => handleDelete(item.id)}
+                    aria-label={`Delete saved report: ${item.topic}`}
                     className="p-1.5 text-[#9CA3AF] hover:text-[#DC2626] hover:bg-rose-50 rounded-lg transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />

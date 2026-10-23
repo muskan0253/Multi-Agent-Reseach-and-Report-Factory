@@ -1,8 +1,24 @@
+
 'use client';
 
 import React from 'react';
-import { X, Key, Cpu, Sliders, Shield, Info, Palette, Type, Globe } from 'lucide-react';
-import { usePreferences, AppTheme, AppFont, AppLanguage } from '../context/PreferencesContext';
+import {
+  X,
+  Key,
+  Cpu,
+  Sliders,
+  Shield,
+  Info,
+  Palette,
+  Type,
+  Globe,
+} from 'lucide-react';
+import {
+  usePreferences,
+  AppTheme,
+  AppFont,
+  AppLanguage,
+} from '../context/PreferencesContext';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -25,14 +41,26 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   customInstructions,
   setCustomInstructions,
 }) => {
-  const { theme, setTheme, font, setFont, language, setLanguage, t } = usePreferences();
+  // Read the current preferences and their update functions.
+  const {
+    theme,
+    setTheme,
+    font,
+    setFont,
+    language,
+    setLanguage,
+    t,
+  } = usePreferences();
 
+  // Do not render the modal when it is closed.
   if (!isOpen) return null;
 
   return (
+    // Overlay that places the settings modal above the main application.
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-150">
       <div className="w-full max-w-xl bg-white dark:bg-[#141C2E] border border-[#E5E7EB] dark:border-[#27354E] rounded-2xl p-6 shadow-2xl space-y-5 text-[#14181F] dark:text-gray-100 max-h-[90vh] overflow-y-auto">
-        {/* Header */}
+        
+        {/* Header: display the modal title and close button. */}
         <div className="flex items-center justify-between border-b border-[#E5E7EB] dark:border-[#27354E] pb-3.5">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#F1F2F4] dark:bg-[#1F293D] flex items-center justify-center text-[#14181F] dark:text-gray-100">
@@ -42,10 +70,16 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <h3 className="text-base font-bold text-[#14181F] dark:text-white">
                 {t('config')} &amp; Preferences
               </h3>
-              <p className="text-xs text-[#6B7280] dark:text-gray-400">Themes, Typography, Multilingual &amp; AI directives</p>
+              <p className="text-xs text-[#6B7280] dark:text-gray-400">
+                Themes, Typography, Multilingual &amp; AI directives
+              </p>
             </div>
           </div>
+
+          {/* Close the modal when the user clicks the X button. */}
           <button
+            type="button"
+            aria-label="Close settings"
             onClick={onClose}
             className="w-8 h-8 rounded-full flex items-center justify-center text-[#6B7280] hover:text-[#14181F] hover:bg-[#F1F2F4] dark:hover:bg-[#1E293B] transition-colors"
           >
@@ -53,35 +87,71 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        {/* Custom Appearance Section */}
+        {/* Appearance and localization preferences. */}
         <div className="space-y-4 border-b border-[#E5E7EB] dark:border-[#27354E] pb-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-gray-400 flex items-center gap-1.5">
             <Palette className="w-3.5 h-3.5 text-[#2563EB]" />
             Appearance &amp; Localization
           </h4>
 
-          {/* Theme Selector */}
+          {/* Theme selector: highlight the active theme. */}
           <div className="space-y-1.5 text-xs">
             <label className="font-semibold flex items-center gap-1.5">
               <span>{t('theme')} Mode</span>
             </label>
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
               {[
-                { id: 'liquid-glass', label: '🧊 Liquid Glass', bg: 'bg-[#1C2155]/80 backdrop-blur-md text-white border border-[#8CA0FF]/50 shadow-[0_4px_20px_rgba(123,97,255,0.4)] font-bold' },
-                { id: 'claymorphism', label: '🧸 Claymorphism', bg: 'bg-[#818CF8]/30 backdrop-blur-md text-white border border-white/40 shadow-[inset_0_4px_8px_rgba(255,255,255,0.4),0_8px_20px_rgba(0,0,0,0.3)] font-bold' },
-                { id: 'synthwave', label: '🌆 Synthwave', bg: 'bg-[#2E0854] text-[#FF71CE] border border-[#FF71CE]/60 shadow-[0_0_15px_rgba(255,113,206,0.3)] font-bold' },
-                { id: 'cyberpunk', label: '⚡ Cyberpunk', bg: 'bg-[#0B0C10] text-[#00F0FF] border border-[#FFE600]/80 shadow-[0_0_15px_rgba(0,240,255,0.3)] font-bold' },
-                { id: 'light', label: '☀️ Minimal Light', bg: 'bg-white text-gray-800 border-gray-300' },
-                { id: 'dark', label: '🌙 Dark Pro', bg: 'bg-[#141C2E] text-white border-blue-900' },
-                { id: 'midnight', label: '🌌 Midnight', bg: 'bg-[#030712] text-cyan-300 border-cyan-900' },
-                { id: 'sepia', label: '📜 Warm Sepia', bg: 'bg-[#FDFBF7] text-amber-950 border-amber-300' },
+                {
+                  id: 'liquid-glass',
+                  label: '🧊 Liquid Glass',
+                  bg: 'bg-[#1C2155]/80 backdrop-blur-md text-white border border-[#8CA0FF]/50 shadow-[0_4px_20px_rgba(123,97,255,0.4)] font-bold',
+                },
+                {
+                  id: 'claymorphism',
+                  label: '🧸 Claymorphism',
+                  bg: 'bg-[#818CF8]/30 backdrop-blur-md text-white border border-white/40 shadow-[inset_0_4px_8px_rgba(255,255,255,0.4),0_8px_20px_rgba(0,0,0,0.3)] font-bold',
+                },
+                {
+                  id: 'synthwave',
+                  label: '🌆 Synthwave',
+                  bg: 'bg-[#2E0854] text-[#FF71CE] border border-[#FF71CE]/60 shadow-[0_0_15px_rgba(255,113,206,0.3)] font-bold',
+                },
+                {
+                  id: 'cyberpunk',
+                  label: '⚡ Cyberpunk',
+                  bg: 'bg-[#0B0C10] text-[#00F0FF] border border-[#FFE600]/80 shadow-[0_0_15px_rgba(0,240,255,0.3)] font-bold',
+                },
+                {
+                  id: 'light',
+                  label: '☀️ Minimal Light',
+                  bg: 'bg-white text-gray-800 border-gray-300',
+                },
+                {
+                  id: 'dark',
+                  label: '🌙 Dark Pro',
+                  bg: 'bg-[#141C2E] text-white border-blue-900',
+                },
+                {
+                  id: 'midnight',
+                  label: '🌌 Midnight',
+                  bg: 'bg-[#030712] text-cyan-300 border-cyan-900',
+                },
+                {
+                  id: 'sepia',
+                  label: '📜 Warm Sepia',
+                  bg: 'bg-[#FDFBF7] text-amber-950 border-amber-300',
+                },
               ].map((th) => (
                 <button
                   key={th.id}
                   type="button"
+                  aria-pressed={theme === th.id}
                   onClick={() => setTheme(th.id as AppTheme)}
                   className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center transition-all ${th.bg} ${
-                    theme === th.id ? 'ring-2 ring-[#2563EB] shadow-sm' : 'opacity-70 hover:opacity-100'
+                    theme === th.id
+                      ? 'ring-2 ring-[#2563EB] shadow-sm'
+                      : 'opacity-70 hover:opacity-100'
                   }`}
                 >
                   {th.label}
@@ -90,13 +160,17 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* Font Selector */}
+          {/* Font selector: update the preferred typography. */}
           <div className="space-y-1.5 text-xs">
-            <label className="font-semibold flex items-center gap-1.5">
+            <label
+              htmlFor="settings-font"
+              className="font-semibold flex items-center gap-1.5"
+            >
               <Type className="w-3.5 h-3.5 text-[#7C3AED]" />
               <span>{t('font')}</span>
             </label>
             <select
+              id="settings-font"
               value={font}
               onChange={(e) => setFont(e.target.value as AppFont)}
               className="w-full bg-white dark:bg-[#1E293B] px-3.5 py-2.5 rounded-full border border-[#D1D5DB] dark:border-[#334155] text-xs text-[#14181F] dark:text-white cursor-pointer"
@@ -109,13 +183,17 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </select>
           </div>
 
-          {/* Language Selector */}
+          {/* Language selector: update the application's language preference. */}
           <div className="space-y-1.5 text-xs">
-            <label className="font-semibold flex items-center gap-1.5">
+            <label
+              htmlFor="settings-language"
+              className="font-semibold flex items-center gap-1.5"
+            >
               <Globe className="w-3.5 h-3.5 text-[#16A34A]" />
               <span>{t('language')}</span>
             </label>
             <select
+              id="settings-language"
               value={language}
               onChange={(e) => setLanguage(e.target.value as AppLanguage)}
               className="w-full bg-white dark:bg-[#1E293B] px-3.5 py-2.5 rounded-full border border-[#D1D5DB] dark:border-[#334155] text-xs text-[#14181F] dark:text-white cursor-pointer"
@@ -131,21 +209,26 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
-        {/* AI & Engine Controls */}
+        {/* AI model settings and custom instructions. */}
         <div className="space-y-4 text-xs">
           <h4 className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-gray-400 flex items-center gap-1.5">
             <Cpu className="w-3.5 h-3.5 text-[#6366F1]" />
             AI Model &amp; Directives
           </h4>
 
-          {/* API Key */}
+          {/* Password-style input keeps the API key hidden on screen. */}
           <div className="space-y-1.5">
-            <label className="font-semibold flex items-center gap-1.5">
+            <label
+              htmlFor="settings-api-key"
+              className="font-semibold flex items-center gap-1.5"
+            >
               <Key className="w-3.5 h-3.5 text-[#2563EB]" />
               Google Gemini API Key (Optional)
             </label>
             <input
+              id="settings-api-key"
               type="password"
+              autoComplete="off"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="AIzaSy... (Leave empty to use built-in intelligent simulation)"
@@ -157,30 +240,44 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </p>
           </div>
 
-          {/* Model Selection */}
+          {/* Model selector: choose the AI model for the workflow. */}
           <div className="space-y-1.5">
-            <label className="font-semibold flex items-center gap-1.5">
+            <label
+              htmlFor="settings-model"
+              className="font-semibold flex items-center gap-1.5"
+            >
               <Cpu className="w-3.5 h-3.5 text-[#6366F1]" />
               Model Architecture
             </label>
             <select
+              id="settings-model"
               value={modelName}
               onChange={(e) => setModelName(e.target.value)}
               className="w-full bg-white dark:bg-[#1E293B] px-3.5 py-2.5 rounded-full border border-[#D1D5DB] dark:border-[#334155] text-xs text-[#14181F] dark:text-white cursor-pointer"
             >
-              <option value="gemini-1.5-flash">Gemini 1.5 Flash (Ultra Fast &amp; Balanced)</option>
-              <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning &amp; Complex Analysis)</option>
-              <option value="gemini-2.0-flash">Gemini 2.0 Flash (Next-Gen High Performance)</option>
+              <option value="gemini-1.5-flash">
+                Gemini 1.5 Flash (Ultra Fast &amp; Balanced)
+              </option>
+              <option value="gemini-1.5-pro">
+                Gemini 1.5 Pro (Deep Reasoning &amp; Complex Analysis)
+              </option>
+              <option value="gemini-2.0-flash">
+                Gemini 2.0 Flash (Next-Gen High Performance)
+              </option>
             </select>
           </div>
 
-          {/* Custom Directives */}
+          {/* Custom directives provide extra context for the AI workflow. */}
           <div className="space-y-1.5">
-            <label className="font-semibold flex items-center gap-1.5">
+            <label
+              htmlFor="settings-custom-instructions"
+              className="font-semibold flex items-center gap-1.5"
+            >
               <Shield className="w-3.5 h-3.5 text-[#7C3AED]" />
               Custom Directives &amp; Focus Constraints
             </label>
             <textarea
+              id="settings-custom-instructions"
               rows={3}
               value={customInstructions}
               onChange={(e) => setCustomInstructions(e.target.value)}
@@ -190,9 +287,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Footer: close the modal after settings are handled by the parent. */}
         <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#E5E7EB] dark:border-[#27354E]">
           <button
+            type="button"
             onClick={onClose}
             className="px-5 py-2.5 bg-[#151A17] hover:bg-[#262E29] dark:bg-[#2563EB] dark:hover:bg-[#1D4ED8] text-white rounded-full text-xs font-bold transition-all shadow-xs"
           >
