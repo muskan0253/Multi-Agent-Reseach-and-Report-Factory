@@ -39,45 +39,45 @@ const AGENT_META: Record<
     name: 'Strategic Planner',
     stageNum: '01',
     role: 'Deconstructs taxonomy, hypotheses & search vectors',
-    icon: <Compass className="w-5 h-5 text-[#6366F1]" />,
-    color: '#6366F1',
-    bgTint: '#EEF2FF',
+    icon: <Compass className="w-4 h-4 text-[#7C5CFF]" />,
+    color: '#7C5CFF',
+    bgTint: 'rgba(124, 92, 255, 0.15)',
     tooltip: 'Deconstructs research query into taxonomy, sub-questions, and targeted search vectors.',
   },
   searcher: {
     name: 'Literature Scout',
     stageNum: '02',
     role: 'Multi-perspective web & repository retrieval',
-    icon: <Search className="w-5 h-5 text-[#06B6D4]" />,
-    color: '#06B6D4',
-    bgTint: '#ECFEFF',
+    icon: <Search className="w-4 h-4 text-[#22D3EE]" />,
+    color: '#22D3EE',
+    bgTint: 'rgba(34, 211, 238, 0.15)',
     tooltip: 'Dispatches targeted web search probes, discovers primary sources, and ranks authority.',
   },
   reader: {
     name: 'Deep Reader',
     stageNum: '03',
     role: 'Mines quantitative metrics, quotes & facts',
-    icon: <BookOpen className="w-5 h-5 text-[#F59E0B]" />,
+    icon: <BookOpen className="w-4 h-4 text-[#F59E0B]" />,
     color: '#F59E0B',
-    bgTint: '#FFFBEB',
+    bgTint: 'rgba(245, 158, 11, 0.15)',
     tooltip: 'Parses document bodies to extract quantitative metrics, findings, quotes, and data tables.',
   },
   critic: {
     name: 'Epistemic Critic',
     stageNum: '04',
     role: 'Fact audits, bias rating & replanning loops',
-    icon: <ShieldCheck className="w-5 h-5 text-[#EF4444]" />,
-    color: '#EF4444',
-    bgTint: '#FEF2F2',
+    icon: <ShieldCheck className="w-4 h-4 text-[#F43F5E]" />,
+    color: '#F43F5E',
+    bgTint: 'rgba(244, 63, 94, 0.15)',
     tooltip: 'Evaluates domain authority, calculates credibility, stress-tests claims, and triggers replan loops.',
   },
   writer: {
     name: 'Executive Synthesizer',
     stageNum: '05',
     role: 'Drafts cited whitepaper & presentation deck',
-    icon: <PenTool className="w-5 h-5 text-[#A855F7]" />,
-    color: '#A855F7',
-    bgTint: '#FAF5FF',
+    icon: <PenTool className="w-4 h-4 text-[#D946EF]" />,
+    color: '#D946EF',
+    bgTint: 'rgba(217, 70, 239, 0.15)',
     tooltip: 'Synthesizes verified evidence into an exhaustive whitepaper with standard footnote citations.',
   },
 };
@@ -92,24 +92,24 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
   const isRunning = state.status === 'running';
 
   return (
-    <div className="w-full bg-white rounded-2xl border border-[#E5E7EB] p-6 sm:p-8 lg:p-10 shadow-[0_4px_20px_rgba(16,24,40,0.06)] relative overflow-hidden">
+    <div className="w-full liquid-glass p-5 sm:p-7 lg:p-8 relative overflow-hidden">
       {/* Floor Section Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-[#F1F2F4] pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-[var(--border-subtle)] pb-4">
         <div>
-          <h3 className="text-xl font-bold text-[#14181F] flex items-center gap-2.5">
+          <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2.5 text-current">
             Autonomous Agent Pipeline
-            <span className="text-xs font-mono font-medium px-3 py-1 rounded-full bg-[#EAD5FF] text-[#581C87] border border-[#D8B4FE]">
+            <span className="text-xs font-mono font-medium px-2.5 py-0.5 rounded-full liquid-glass-subtle">
               5 Specialized Stations
             </span>
           </h3>
-          <p className="text-xs sm:text-sm text-[#6B7280] pt-1">
+          <p className="text-xs sm:text-sm opacity-70 pt-1">
             Continuous inter-agent coordination over typed message bus with adaptive evaluator-optimizer feedback
           </p>
         </div>
 
         {hasReplanActive && (
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-semibold">
-            <Repeat className="w-3.5 h-3.5 text-amber-600 animate-spin" />
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-medium">
+            <Repeat className="w-3.5 h-3.5 text-amber-300 animate-spin" />
             <span>Critic Feedback Active (Loop #{replanHistory.length})</span>
           </div>
         )}
@@ -129,20 +129,20 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
 
           // Status Badge
           let statusLabel = 'Idle';
-          let statusStyle = 'bg-[#F1F2F4] text-[#6B7280] border-[#E5E7EB]';
+          let statusStyle = 'bg-white/10 opacity-70 border-[var(--border-subtle)]';
 
           if (isReplanning) {
             statusLabel = 'Replanning';
-            statusStyle = 'bg-amber-100 text-amber-800 border-amber-300 animate-pulse';
+            statusStyle = 'bg-amber-500/30 text-amber-300 border-amber-400/40 animate-pulse';
           } else if (isActive) {
             statusLabel = 'Running';
-            statusStyle = 'bg-blue-50 text-blue-700 border-blue-200 animate-pulse';
+            statusStyle = 'bg-cyan-500/30 text-cyan-300 border-cyan-400/40 animate-pulse';
           } else if (isCompleted) {
             statusLabel = 'Done';
-            statusStyle = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+            statusStyle = 'bg-emerald-500/25 text-emerald-300 border-emerald-400/40';
           } else if (agent.status === 'error') {
             statusLabel = 'Error';
-            statusStyle = 'bg-rose-50 text-rose-700 border-rose-200';
+            statusStyle = 'bg-rose-500/30 text-rose-300 border-rose-400/40';
           }
 
           return (
@@ -152,32 +152,32 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                 <div className="hidden lg:flex absolute -right-3.5 top-20 z-10 items-center justify-center pointer-events-none">
                   <ArrowRight
                     className={`w-4 h-4 transition-colors duration-200 ${
-                      isCompleted ? 'text-[#14181F]' : 'text-[#D1D5DB]'
-                    } ${isRunning && isActive ? 'animate-pulse text-[#2563EB]' : ''}`}
+                      isCompleted ? 'text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]' : 'text-[#64748B]'
+                    } ${isRunning && isActive ? 'animate-pulse text-cyan-400' : ''}`}
                   />
                 </div>
               )}
 
-              {/* White Agent Card */}
+              {/* Theme-Responsive Frosted Agent Card */}
               <button
                 type="button"
                 onClick={() => onSelectAgentTab(agentId)}
                 title={meta.tooltip}
-                className={`w-full text-left p-5 rounded-2xl border bg-white transition-all duration-150 relative group cursor-pointer flex flex-col justify-between h-[195px] shadow-[0_2px_10px_rgba(16,24,40,0.04)] hover:shadow-lg hover:border-[#D1D5DB] ${
+                className={`w-full text-left p-4 sm:p-5 liquid-glass glass-panel-hover transition-all duration-200 relative group cursor-pointer flex flex-col justify-between h-[200px] ${
                   isActive
-                    ? 'ring-2 ring-[#14181F] border-[#14181F]'
-                    : 'border-[#E5E7EB]'
+                    ? 'ring-2 ring-cyan-400 shadow-[0_0_24px_rgba(34,211,238,0.35)] translate-y-[-2px]'
+                    : ''
                 }`}
                 style={{
-                  borderTopWidth: '4px',
+                  borderTopWidth: '3px',
                   borderTopColor: meta.color,
                 }}
               >
                 {/* Active agent subtle indicator */}
                 {isActive && (
-                  <span className="absolute top-2 right-2 flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+                  <span className="absolute top-2.5 right-2.5 flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-300 shadow-[0_0_8px_rgba(34,211,238,1)]" />
                   </span>
                 )}
 
@@ -186,12 +186,12 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-[#E5E7EB]"
+                        className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.12)]"
                         style={{ backgroundColor: meta.bgTint }}
                       >
                         {meta.icon}
                       </div>
-                      <span className="text-[11px] font-mono font-bold text-[#9CA3AF]">
+                      <span className="text-[11px] font-mono font-bold text-[rgba(255,255,255,0.50)]">
                         {meta.stageNum}
                       </span>
                     </div>
@@ -203,32 +203,33 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-[#14181F] group-hover:text-[#2563EB] transition-colors truncate">
+                  <h4 className="text-sm font-bold text-[#F5F7FF] group-hover:text-white transition-colors truncate">
                     {meta.name}
                   </h4>
-                  <p className="text-[11px] text-[#6B7280] line-clamp-1 mt-0.5">
+                  <p className="text-[11px] text-[rgba(255,255,255,0.60)] line-clamp-1 mt-0.5">
                     {agent.role}
                   </p>
                 </div>
 
                 {/* Card Bottom: Progress Bar & Current Task/Metric */}
-                <div className="space-y-1.5 pt-2 border-t border-[#F1F2F4]">
-                  <div className="w-full bg-[#F1F2F4] rounded-full h-1.5 overflow-hidden">
+                <div className="space-y-1.5 pt-2 border-t border-[rgba(255,255,255,0.08)]">
+                  <div className="w-full bg-[rgba(255,255,255,0.08)] rounded-full h-1 overflow-hidden">
                     <div
                       className="h-full transition-all duration-300 rounded-full"
                       style={{
                         width: `${agent.progress}%`,
-                        backgroundColor: isCompleted ? '#16A34A' : meta.color,
+                        backgroundColor: isCompleted ? '#34D399' : meta.color,
+                        boxShadow: isActive ? `0 0 8px ${meta.color}` : 'none',
                       }}
                     />
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[#6B7280]">
-                    <span className="truncate max-w-[120px] text-[#14181F] font-medium">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[rgba(255,255,255,0.72)]">
+                    <span className="truncate max-w-[120px] text-[#F5F7FF] font-medium">
                       {agent.currentTask || (isCompleted ? 'Finished' : 'Waiting')}
                     </span>
                     {agent.durationMs ? (
-                      <span className="shrink-0 text-[#9CA3AF]">
+                      <span className="shrink-0 text-cyan-300">
                         {(agent.durationMs / 1000).toFixed(1)}s
                       </span>
                     ) : null}
@@ -242,21 +243,21 @@ export const ResearchFloor: React.FC<ResearchFloorProps> = ({
 
       {/* Curved Replan Loop Arrow: Critic back to Scout/Planner */}
       {hasReplanActive && (
-        <div className="mt-4 p-3 bg-amber-50 border border-amber-300 rounded-xl flex items-center justify-between text-xs text-amber-900">
+        <div className="mt-5 p-3.5 bg-[rgba(245,158,11,0.08)] border border-amber-400/30 rounded-xl flex items-center justify-between text-xs text-amber-200">
           <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-full bg-amber-200 flex items-center justify-center shrink-0">
-              <CornerUpLeft className="w-3.5 h-3.5 text-amber-900 animate-pulse" />
+            <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
+              <CornerUpLeft className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
             </div>
             <div>
-              <span className="font-bold mr-1">
+              <span className="font-bold mr-1 text-[#F5F7FF]">
                 Adaptive Feedback Loop #{replanHistory.length}:
               </span>
-              <span className="text-[#4B5563]">
+              <span className="text-[rgba(255,255,255,0.72)]">
                 {replanHistory[replanHistory.length - 1].reason} (Redirected from Critic to Scout)
               </span>
             </div>
           </div>
-          <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-white border border-amber-200 text-amber-800 shrink-0">
+          <span className="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-[rgba(255,255,255,0.08)] border border-amber-400/30 text-amber-200 shrink-0">
             Evaluator-Optimizer Active
           </span>
         </div>

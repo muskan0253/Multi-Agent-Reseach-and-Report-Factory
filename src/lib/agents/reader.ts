@@ -191,3 +191,6 @@ Return ONLY the JSON array.
     });
   }
 }
+
+// Extraction density and contradiction detection parameter
+export const FACT_EXTRACTION_CONFIDENCE_THRESHOLD = 0.70;

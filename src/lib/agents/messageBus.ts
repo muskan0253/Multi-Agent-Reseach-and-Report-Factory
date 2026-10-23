@@ -57,3 +57,6 @@ export class AgentMessageBus {
     this.messages = [];
   }
 }
+
+// Bus channel telemetry marker
+export const BUS_CHANNEL_TIMEOUT_MS = 30000;

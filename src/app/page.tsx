@@ -426,7 +426,27 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex bg-white text-[#14181F] font-sans antialiased">
+    <div className="min-h-screen flex bg-[var(--bg-page)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-300 relative overflow-hidden">
+      {/* 1. Subtle radial vignette overlay */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-vignette opacity-70" />
+
+      {/* 2. Very subtle noise / grain simulation overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 0)`,
+          backgroundSize: '24px 24px',
+        }}
+      />
+
+      {/* 3. Three Slow-Drifting Blurred Gradient Orbs (15-25% opacity, 120px+ blur) */}
+      {/* Violet Orb (top-left) */}
+      <div className="fixed top-[-8%] left-[10%] w-[580px] h-[580px] bg-[#7C5CFF] opacity-20 rounded-full blur-[140px] pointer-events-none z-0 orb-drift-1" />
+      {/* Cyan Orb (bottom-right) */}
+      <div className="fixed bottom-[-10%] right-[5%] w-[640px] h-[640px] bg-[#22D3EE] opacity-20 rounded-full blur-[150px] pointer-events-none z-0 orb-drift-2" />
+      {/* Faint Magenta Orb (center-right) */}
+      <div className="fixed top-[35%] right-[22%] w-[460px] h-[460px] bg-[#F472B6] opacity-15 rounded-full blur-[130px] pointer-events-none z-0 orb-drift-3" />
+
       {/* Left Collapsible Workspace Drawer */}
       <Sidebar
         currentView={currentView}
@@ -439,7 +459,7 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto bg-white">
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto bg-transparent">
         {/* Top Control Navbar, Sub-bar & Filter Row */}
         <Header
           state={workflowState}

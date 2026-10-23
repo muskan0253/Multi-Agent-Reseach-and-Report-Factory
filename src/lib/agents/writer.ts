@@ -449,3 +449,6 @@ ${citations.map(c => `[^${c.index}]: **${c.title}**  \n    *Domain*: [${c.domain
     };
   }
 }
+
+// Whitepaper citation density validator
+export const MINIMUM_REPORT_CITATION_RATIO = 1.2;

@@ -139,3 +139,6 @@ docker run -p 3000:3000 research-factory:latest
 
 This project is intended as a research workflow prototype and product demo. It focuses on agent coordination, evidence evaluation, and report synthesis in a web-based interface.
 
+
+## Multi-Agent Replanning Loop
+The system implements a dynamic generator-evaluator loop where the CriticAgent actively critiques extracted claims and triggers targeted replan directives to the Planner and Searcher.

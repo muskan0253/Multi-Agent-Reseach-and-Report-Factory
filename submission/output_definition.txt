@@ -1,0 +1,98 @@
+================================================================================
+OUTPUT DEFINITION SPECIFICATION: MULTI-AGENT RESEARCH & REPORT FACTORY
+Exam Studio Track: Advanced Agentic Coding & Autonomous Multi-Agent Workflows
+Team Members:
+  - Anushka Tandon (23070122262) - Project Lead / Multi-Agent Architecture
+  - Jyoti Kumari Sah (23070122278) - Epistemic Verification & Critic Engine
+  - Muskan Shah (23070122279) - Literature Scout & Vector Retrieval Tools
+  - Lauriane Lenge Wa Mpitshi (23070122260) - Reader Agent & Data Pipeline
+Repository: https://github.com/AnushkaTandon26/Multi-Agent-Reseach-and-Report-Factory
+================================================================================
+
+1. OVERVIEW & ARTIFACT COMPILATION
+--------------------------------------------------------------------------------
+The Multi-Agent Research & Report Factory emits a dual-plane deliverable upon
+pipeline completion:
+1. User-Facing Analytical Report (Structured Markdown with footnote citations,
+   Executive Summary, Key Findings, Risk Audit, and Bibliography).
+2. Machine-Readable Full Execution Trace (Typed JSON recording agent message bus
+   events, tool executions, memory transitions, and adaptive feedback loops).
+
+2. SCHEMA SPECIFICATION & DELIVERABLE STRUCTURE
+--------------------------------------------------------------------------------
+
+A. FINAL REPORT DELIVERABLE (WorkflowReport Object)
+--------------------------------------------------------------------------------
+Field Name              Type       Description
+--------------------------------------------------------------------------------
+id                      string     Unique identifier (e.g. "report-1791965000-a8f2")
+title                   string     Comprehensive title reflecting target persona
+summary                 string     Executive high-level abstract / briefing
+sections                array      Ordered analytical report sections
+  section.id            string     Section identifier (e.g. "sec-exec-summary")
+  section.title         string     Human-readable section header
+  section.content       string     Markdown content with bracketed citations [^1]
+  section.claims        array      Validated empirical assertions in this section
+  section.sourcesUsed   array      String array of source IDs mapped to this section
+markdownContent         string     Full concatenated whitepaper ready for PDF export
+wordCount               number     Total synthesized word count (e.g. 1850 words)
+readingTimeMinutes      number     Estimated reading time (e.g. 8 minutes)
+generatedAt             number     Epoch timestamp in milliseconds
+persona                 string     Target persona used during synthesis
+depth                   string     Research depth parameter executed
+citations               array      Formal bibliographic references:
+  citation.id           string     Citation anchor (e.g. "[^1]")
+  citation.sourceId     string     Linked Source ID in evidence bank
+  citation.title        string     Source title or paper name
+  citation.url          string     Direct URL / DOI reference
+  citation.domain       string     Authority domain (e.g. "nature.com")
+  citation.authorOrOrg  string     Publishing author or organization
+
+B. CRITIC EPISTEMIC SCORECARD (CriticReview Object)
+--------------------------------------------------------------------------------
+Field Name                  Type       Description
+--------------------------------------------------------------------------------
+overallCredibilityScore     number     0 to 100 aggregate epistemic reliability index
+criticDecision              string     "approved" | "request_more_evidence" | "replan"
+totalSourcesEvaluated       number     Count of candidate sources audited
+verifiedFactsCount          number     Count of facts cross-referenced and validated
+flaggedClaimsCount          number     Count of unverified or disputed claims
+informationGaps             string[]   Specific knowledge gaps requiring follow-up
+followUpSearchQueries       string[]   Targeted search queries dispatched for replan
+sourceScorecards            array      Per-source credibility breakdown:
+  sourceScorecard.sourceId  string     Source identifier
+  sourceScorecard.domain    string     Domain name
+  sourceScorecard.credibilityScore number (0-100)
+  sourceScorecard.authorityLevel string ("High" | "Medium" | "Low" | "Caution")
+  sourceScorecard.biasRating     string ("Academic" | "Commercial" | "Moderate")
+  sourceScorecard.verdict        string Specific epistemic audit verdict
+verifiedClaims              array      Claims with high corroboration ratio
+redTeamAudit                object     Adversarial stress-test results (when active)
+
+C. REPLAN FEEDBACK LOOP HISTORY (ReplanLoopRecord Object)
+--------------------------------------------------------------------------------
+Field Name      Type       Description
+--------------------------------------------------------------------------------
+loopNumber      number     Sequential feedback iteration count (1, 2, ...)
+from            string     Originating agent (e.g. "critic")
+to              string     Target agent receiving directive (e.g. "searcher")
+reason          string     Explicit causal reason for rejection / re-query
+timestamp       number     Execution timestamp in milliseconds
+details         string     Extended summary of action taken
+queryBefore     string[]   Search query vectors prior to replan feedback
+queryAfter      string[]   Targeted refined query vectors dispatched
+scoreBefore     number     Epistemic score prior to feedback loop
+scoreAfter      number     Epistemic score achieved after evidence enrichment
+
+D. AGENT MESSAGE BUS & TOOL AUDIT LOG
+--------------------------------------------------------------------------------
+- Array of all typed inter-agent messages (`task`, `result`, `critique`, `status`)
+- Complete tool invocation telemetry (input params, execution ms, status, payload)
+- Snapshot of shared run memory (verified facts, rejected sources, active hypotheses)
+
+3. EXPORT CAPABILITIES
+--------------------------------------------------------------------------------
+- One-Click PDF Generation (`window.print()` / PDF export view)
+- Raw Markdown Export (`.md` file format with citation list)
+- Comprehensive Audit JSON Export (`.json` with trace and telemetry)
+================================================================================

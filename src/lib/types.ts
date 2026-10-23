@@ -192,6 +192,10 @@ export interface ReplanLoopRecord {
   reason: string;
   timestamp: number;
   details?: string;
+  queryBefore?: string[];
+  queryAfter?: string[];
+  scoreBefore?: number;
+  scoreAfter?: number;
 }
 
 // -------------------------------------------------------------
@@ -298,4 +302,20 @@ export interface StreamEvent {
   agent?: AgentType;
   timestamp: number;
   data: any;
+}
+
+export interface DynamicReplanningFeedback {
+  iteration: number;
+  targetStage: 'Planner' | 'Searcher' | 'Reader';
+  shortfalls: string[];
+  recommendedActions: string[];
+  gapAnalysisConfidence: number;
+}
+
+export interface StageLatencyMetrics {
+  plannerMs: number;
+  searcherMs: number;
+  readerMs: number;
+  criticMs: number;
+  writerMs: number;
 }

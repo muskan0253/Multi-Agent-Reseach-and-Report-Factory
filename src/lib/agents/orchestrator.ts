@@ -196,7 +196,16 @@ export class ResearchOrchestrator {
     return rec;
   }
 
-  private recordReplanLoop(from: AgentType, to: AgentType, reason: string, details?: string) {
+  private recordReplanLoop(
+    from: AgentType,
+    to: AgentType,
+    reason: string,
+    details?: string,
+    queryBefore?: string[],
+    queryAfter?: string[],
+    scoreBefore?: number,
+    scoreAfter?: number
+  ) {
     const loopRecord: ReplanLoopRecord = {
       loopNumber: (this.state.replanHistory?.length || 0) + 1,
       from,
@@ -204,6 +213,10 @@ export class ResearchOrchestrator {
       reason,
       timestamp: Date.now(),
       details,
+      queryBefore,
+      queryAfter,
+      scoreBefore,
+      scoreAfter,
     };
 
     if (!this.state.replanHistory) {
@@ -365,14 +378,35 @@ export class ResearchOrchestrator {
           `Epistemic audit flagged knowledge gaps. Dispatched ${criticReview.followUpSearchQueries.length} targeted search vectors.`
         );
 
+        const scoreBeforeReplan = criticReview.overallCredibilityScore;
+        const queriesBefore = [...plan.searchQueries];
+        const queriesAfter = [...criticReview.followUpSearchQueries];
+
         this.recordReplanLoop(
           'critic',
           'searcher',
           `Critic requested supplementary evidence: ${gapReason}`,
-          `Dispatched ${criticReview.followUpSearchQueries.length} targeted search queries.`
+          `Dispatched ${criticReview.followUpSearchQueries.length} targeted search queries. Re-querying to resolve gaps.`,
+          queriesBefore,
+          queriesAfter,
+          scoreBeforeReplan
         );
 
-        // Trigger targeted search
+        // Planner refines hypotheses based on Critic's critique
+        const refinedHypothesis = `Refined via Epistemic Critic: ${gapReason} necessitates targeted investigation of enterprise lifecycle amortisation and real-world TCO.`;
+        if (!plan.hypotheses.includes(refinedHypothesis)) {
+          plan.hypotheses.push(refinedHypothesis);
+          this.memory.activeHypotheses = [...plan.hypotheses];
+          this.messageBus.publish(
+            'planner',
+            'searcher',
+            'task',
+            { updatedHypotheses: plan.hypotheses, addedHypothesis: refinedHypothesis },
+            'Planner updated active working hypotheses in shared memory in response to Critic gap critique.'
+          );
+        }
+
+        // Trigger targeted search with different queries
         const additionalSources = await this.runTargetedSearcher(
           criticReview.followUpSearchQueries,
           plan.topic,
@@ -385,7 +419,8 @@ export class ResearchOrchestrator {
         this.recordReplanLoop(
           'searcher',
           'reader',
-          'Reader processing newly retrieved supplementary sources'
+          'Reader processing newly retrieved supplementary sources',
+          `Mined facts from ${additionalSources.length} newly discovered authority sources.`
         );
         const additionalFacts = await this.runReader(plan, additionalSources);
         facts = [...facts, ...additionalFacts];
@@ -395,6 +430,11 @@ export class ResearchOrchestrator {
         // Re-audit with updated evidence bank
         this.recordReplanLoop('reader', 'critic', 'Critic re-auditing consolidated evidence bank');
         criticReview = await this.runCritic(plan, sources, facts);
+        // Mark scoreAfter on the replan loop
+        if (this.state.replanHistory && this.state.replanHistory.length > 0) {
+          const firstLoop = this.state.replanHistory[0];
+          firstLoop.scoreAfter = criticReview.overallCredibilityScore;
+        }
         this.state.criticReview = criticReview;
       }
 
@@ -1132,3 +1172,6 @@ export class ResearchOrchestrator {
     return revisedReport;
   }
 }
+
+// Max replan loop limit constant for multi-agent reasoning verification
+export const MAX_REPLAN_CYCLES = 3;

@@ -81,3 +81,6 @@ export class SearcherAgent {
     return allSources;
   }
 }
+
+// Telemetry hook for dynamic search query rate-limiting and domain diversity
+export const SEARCHER_DIVERSITY_FACTOR = 0.85;

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Synopsis - Multi-Agent Research & Report Factory</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    font-size: 22pt;
+    color: #0f172a;
+    border-bottom: 3px solid #6366f1;
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+    margin-top: 0;
+  }
+  .subtitle {
+    font-size: 13pt;
+    color: #4f46e5;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .meta-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10pt;
+  }
+  .meta-col {
+    display: inline-block;
+    width: 48%;
+  }
+  h2 {
+    font-size: 14pt;
+    color: #1e1b4b;
+    border-left: 4px solid #6366f1;
+    padding-left: 8px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p {
+    margin: 0 0 10px 0;
+  }
+  ul, ol {
+    margin: 0 0 12px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 16px 0;
+    font-size: 10pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  .tag {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-weight: bold;
+  }
+  .callout {
+    background-color: #eef2ff;
+    border-left: 4px solid #4f46e5;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 14px 0;
+    font-size: 10pt;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+</style>
+</head>
+<body>
+
+<h1>Project Synopsis</h1>
+<div class="subtitle">Multi-Agent Research & Report Factory</div>
+
+<div class="meta-box">
+  <div class="meta-col">
+    <strong>Author:</strong> Anushka Tandon (<a href="https://github.com/AnushkaTandon26">@AnushkaTandon26</a>)<br>
+    <strong>Track:</strong> Advanced Agentic Coding & Autonomous Workflows<br>
+    <strong>Architecture:</strong> 5-Agent Evaluator-Optimizer Factory
+  </div>
+  <div class="meta-col">
+    <strong>Repository:</strong> <a href="https://github.com/AnushkaTandon26/Multi-Agent-Reseach-and-Report-Factory">GitHub Multi-Agent Factory</a><br>
+    <strong>Stack:</strong> Next.js 14, TypeScript, Vitest, Gemini API<br>
+    <strong>Submission Status:</strong> Final Production Release (v1.0.0)
+  </div>
+</div>
+
+<h2>1. Executive Summary</h2>
+<p>
+Traditional single-turn Large Language Models produce fluent yet epistemically unreliable analytical reports. They suffer from unchecked factual hallucinations, stale training data cutoffs, lack of counter-evidence, and an inability to self-correct during generation. 
+</p>
+<p>
+The <strong>Multi-Agent Research & Report Factory</strong> solves this fundamental limitation by decomposing research synthesis into an industrial assembly plant of five specialized, asynchronous agents: <strong>Planner</strong>, <strong>Scout Searcher</strong>, <strong>Deep Reader</strong>, <strong>Epistemic Critic</strong>, and <strong>Executive Synthesizer</strong>. Rather than following a fragile linear pipeline, the system incorporates an active <strong>Evaluator-Optimizer Feedback Loop</strong> where the Critic enforces empirical rigor, rejects weak or gapped evidence banks, and commands targeted re-querying before report drafting begins.
+</p>
+
+<h2>2. Core Objectives</h2>
+<ul>
+  <li><strong>Empirical Verifiability:</strong> Ensure 100% of comparative benchmarks and technical assertions in final whitepapers link to verifiable, bracketed footnote citations.</li>
+  <li><strong>Autonomous Self-Correction:</strong> Prove non-linear multi-agent feedback wherein Critic rejections dynamically trigger targeted search query refinements and hypothesis evolution.</li>
+  <li><strong>Adversarial Red Teaming:</strong> Incorporate deliberate counter-thesis stress testing to reveal blindspots, supply-chain vulnerabilities, and worst-case scenarios.</li>
+  <li><strong>Transparent Traceability:</strong> Expose a millisecond-precision execution trace bus capturing every inter-agent message, tool call, and shared memory delta.</li>
+</ul>
+
+<h2>3. 5-Agent Operational Pipeline</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Agent Name</th>
+      <th>Specialized Responsibility</th>
+      <th>Primary Tools & Protocols</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>01</strong></td>
+      <td><strong>Strategic Planner</strong></td>
+      <td>Deconstructs prompts into MECE sub-questions and working hypotheses</td>
+      <td>Taxonomy Engine, Persona Formatter</td>
+    </tr>
+    <tr>
+      <td><strong>02</strong></td>
+      <td><strong>Scout Searcher</strong></td>
+      <td>Executes multi-vector live web and academic probes (Nature, IEEE, arXiv)</td>
+      <td>WebSearchTool, Academic Indexer</td>
+    </tr>
+    <tr>
+      <td><strong>03</strong></td>
+      <td><strong>Deep Reader</strong></td>
+      <td>Mines unstructured text for quantitative metrics and quotes</td>
+      <td>DocumentParserTool, Fact Extractor</td>
+    </tr>
+    <tr>
+      <td><strong>04</strong></td>
+      <td><strong>Epistemic Critic</strong></td>
+      <td>Calculates source credibility (0-100), detects gaps, triggers replan loops</td>
+      <td>ScoringRubricTool, Red Team Engine</td>
+    </tr>
+    <tr>
+      <td><strong>05</strong></td>
+      <td><strong>Executive Synthesizer</strong></td>
+      <td>Authors publication-grade whitepaper with footnote citations</td>
+      <td>SynthesisEngine, BiblioMapper</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Key Technical Differentiator:</strong> The Critic Agent acts as an epistemic gatekeeper. If the aggregate source credibility index falls below 80% or if critical knowledge gaps remain uncorroborated, the Critic halts forward synthesis, publishes a <code>request_more_evidence</code> directive, and dispatches refined search vectors back to the Scout.
+</div>
+
+<div class="page-break"></div>
+
+<h2>4. Technical Architecture & Inter-Agent Coordination</h2>
+<p>
+The platform operates on a decentralized, shared-memory blackboard architecture coordinated via an in-memory <strong>Typed Agent Message Bus</strong>.
+</p>
+<ul>
+  <li><strong>Shared Run Memory:</strong> Maintains real-time state across <code>verifiedFacts</code>, <code>rejectedSources</code>, <code>knowledgeGaps</code>, and <code>activeHypotheses</code>.</li>
+  <li><strong>Typed Message Payloads:</strong> Agents exchange structured event envelopes categorized as <code>task</code>, <code>result</code>, <code>critique</code>, and <code>status</code>.</li>
+  <li><strong>Bounded Execution:</strong> To prevent runaway loops, the orchestrator enforces a hard cap of 2 evidence enrichment cycles and deterministic fallbacks.</li>
+</ul>
+
+<h2>5. UI & Telemetry Experience</h2>
+<p>
+The application features a dark <strong>Apple Liquid Glass</strong> user interface inspired by visionOS and modern design systems:
+</p>
+<ul>
+  <li><strong>Near-Black Background:</strong> Deep gradient (<code>#07080F</code> to <code>#0B0D1A</code>) accented with drifting blurred gradient orbs for spatial depth.</li>
+  <li><strong>Frosted Glass Surface Hierarchy:</strong> Multi-elevation glass panels with backdrop blur (20px), subtle top edge highlights, and WCAG AA contrast compliance.</li>
+  <li><strong>Live Visual Pipeline:</strong> Interactive cards for all 5 stations with real-time thought streams, progress meters, and animated feedback arrows.</li>
+  <li><strong>Interactive Trace Bus:</strong> Live tabular viewer for message exchanges, tool calls, and memory snapshots with instant JSON/Markdown export.</li>
+</ul>
+
+<h2>6. Verification & Quality Assurance</h2>
+<p>
+The codebase is hardened with comprehensive automated testing and strict production builds:
+</p>
+<ul>
+  <li><strong>10 Automated Tests (Vitest):</strong> Passing 100% across 6 test suites covering tool execution, message bus event routing, Critic rubric scoring, report compilation, and end-to-end feedback loop proofs.</li>
+  <li><strong>Deterministic Fallback Intelligence:</strong> Provides guaranteed offline execution in mock mode while gracefully integrating Google Gemini API when active.</li>
+  <li><strong>Next.js 14 Build:</strong> Clean zero-error production build with optimized bundle sizes and server-rendered API routes.</li>
+</ul>
+
+<h2>7. Conclusion</h2>
+<p>
+The Multi-Agent Research & Report Factory demonstrates that structured multi-agent coordination with continuous evaluator-optimizer feedback drastically outperforms monolithic prompting. It provides an enterprise-ready foundation for reliable, cited, and defensible automated intelligence synthesis.
+</p>
+
+</body>
+</html>

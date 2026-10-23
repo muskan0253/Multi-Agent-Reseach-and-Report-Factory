@@ -41,27 +41,27 @@ export const ReportView: React.FC<ReportViewProps> = ({
 
   return (
     <div className="space-y-6 pb-20 w-full">
-      {/* Top Banner (White Card) */}
-      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(16,24,40,0.06)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      {/* Top Banner (Theme Responsive Card) */}
+      <div className="liquid-glass p-5 sm:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-[#FAF5FF] border border-[#E9D5FF] flex items-center justify-center text-[#A855F7] shrink-0">
+          <div className="w-12 h-12 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center text-purple-300 shrink-0">
             <PenTool className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-[#14181F]">
+              <h2 className="text-lg font-bold text-current">
                 Stage 05: Executive Synthesizer
               </h2>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase bg-purple-50 text-purple-700 font-bold border border-purple-200">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase liquid-glass-subtle font-bold">
                 {agent.status}
               </span>
               {state.activeAgent === 'writer' && (
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-purple-100 text-purple-800 animate-pulse font-bold border border-purple-300">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/20 text-purple-300 animate-pulse font-bold border border-purple-400/30">
                   Live Streaming Draft...
                 </span>
               )}
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs opacity-70">
               Synthesizes verified facts, comparative matrices, and critic directives into an executive whitepaper.
             </p>
           </div>
@@ -70,7 +70,7 @@ export const ReportView: React.FC<ReportViewProps> = ({
         {report?.slides && report.slides.length > 0 && (
           <button
             onClick={() => setIsSlideDeckOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#151A17] hover:bg-[#262E29] text-xs font-semibold text-white transition-all shadow-xs shrink-0"
+            className="flex items-center gap-2 px-4 py-2 rounded-full liquid-glass-subtle hover:opacity-100 text-xs font-semibold text-current transition-all shadow-xs shrink-0"
           >
             <Presentation className="w-4 h-4" />
             <span>Open Presentation Slides</span>

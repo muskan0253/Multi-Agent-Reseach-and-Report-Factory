@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { PreferencesProvider } from '@/context/PreferencesContext';
 
 export const metadata: Metadata = {
   title: 'Multi-Agent Research & Report Factory',
@@ -12,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-[#090D16] text-gray-100 antialiased selection:bg-purple-500/30 selection:text-purple-200">
-        {children}
+    <html lang="en" data-theme="liquid-glass" className="dark">
+      <body className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] antialiased transition-colors duration-200">
+        <PreferencesProvider>
+          {children}
+        </PreferencesProvider>
       </body>
     </html>
   );

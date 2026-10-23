@@ -1,0 +1,82 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1054 >>
+stream
+BT
+/F2 16 Tf
+50 740 Td
+(Multi-Agent Research Factory: Project Synopsis) Tj
+ET
+BT
+/F2 12 Tf
+50 700 Td
+(1. Executive Overview & Problem Statement) Tj
+ET
+BT
+/F1 10 Tf
+50 682 Td
+(Modern generative AI workflows frequently suffer from hallucinations and superficial synthesis.) Tj
+T*
+(Multi-Agent Research Factory coordinates 5 autonomous agents \(Planner, Searcher, Reader, Critic, Writer\).) Tj
+T*
+(The system introduces a dynamic evaluator-optimizer feedback loop for verification.) Tj
+T*
+ET
+BT
+/F2 12 Tf
+50 626 Td
+(2. Team Details & System Architecture) Tj
+ET
+BT
+/F1 10 Tf
+50 608 Td
+(Team Name: CodeVerse | Team Lead: Anushka Tandon \(PRN: 23070122262\)) Tj
+T*
+(Architecture: Orchestrator -> Planner -> Searcher -> Reader -> Critic \(Loop\) -> Writer.) Tj
+T*
+ET
+BT
+/F2 12 Tf
+50 566 Td
+(3. Core Innovations & Key Results) Tj
+ET
+BT
+/F1 10 Tf
+50 548 Td
+(Closed-loop audit: Critic triggers targeted re-planning when fact confidence drops below 80.) Tj
+T*
+(Full transparency with real-time execution trace, Vitest test suite, and clean modern web UI.) Tj
+T*
+ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001357 00000 n 
+0000001427 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1502
+%%EOF

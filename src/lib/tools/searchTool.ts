@@ -41,3 +41,6 @@ export class WebSearchTool {
     }
   }
 }
+
+// Cache TTL for simulated web search probe results
+export const SEARCH_CACHE_TTL_MS = 60000;

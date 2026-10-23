@@ -1,10 +1,10 @@
 {
-  "traceId": "trace-1790845350708-uu2bdv",
-  "timestamp": 1790845349208,
+  "traceId": "trace-1791965448637-8517bs",
+  "timestamp": 1791965447283,
   "topic": "Commercial Viability of Solid-State Batteries by 2030",
-  "depth": "standard",
+  "depth": "quick",
   "persona": "executive",
-  "totalDurationMs": 1500,
+  "totalDurationMs": 1354,
   "agentsExecuted": [
     "planner",
     "searcher",
@@ -14,8 +14,8 @@
   ],
   "messages": [
     {
-      "id": "msg-1790845349209-jbks1",
-      "timestamp": 1790845349209,
+      "id": "msg-1791965447284-kf0lv",
+      "timestamp": 1791965447284,
       "from": "planner",
       "to": "searcher",
       "type": "task",
@@ -23,39 +23,36 @@
         "searchQueries": [
           "Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025",
           "Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks",
-          "Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics",
-          "Commercial Viability of Solid-State Batteries by 2030 expert case studies adoption roadmaps and future outlook"
+          "Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics"
         ],
         "hypotheses": [
           "Hypothesis A: Accelerating adoption of Commercial Viability of Solid-State Batteries by 2030 will yield compounding productivity and efficiency dividends, despite current infrastructure constraints.",
-          "Hypothesis B: Widespread scaling will require addressing critical standardizations, supply-chain/reliability hurdles, and cost parity."
+          "Hypothesis B: Widespread scaling will require addressing critical standardizations, supply-chain/reliability hurdles, and cost parity.",
+          "Refined via Epistemic Critic: Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure. necessitates targeted investigation of enterprise lifecycle amortisation and real-world TCO."
         ],
-        "depth": "standard"
+        "depth": "quick"
       },
       "reasoning": "Formulated research taxonomy, sub-questions, and initial search query vectors."
     },
     {
-      "id": "msg-1790845350671-kqp2x",
-      "timestamp": 1790845350671,
+      "id": "msg-1791965448291-ania5",
+      "timestamp": 1791965448291,
       "from": "searcher",
       "to": "reader",
       "type": "result",
       "payload": {
-        "sourcesDiscovered": 12,
+        "sourcesDiscovered": 6,
         "primaryDomains": [
-          "mckinsey.com",
-          "mit.edu",
           "reuters.com",
-          "nih.gov",
-          "ieee.org",
-          "gartner.com"
+          "arxiv.org",
+          "mckinsey.com"
         ]
       },
-      "reasoning": "Discovered and deduplicated 12 primary source candidates across web probes."
+      "reasoning": "Discovered and deduplicated 6 primary source candidates across web probes."
     },
     {
-      "id": "msg-1790845350672-vl7s0",
-      "timestamp": 1790845350672,
+      "id": "msg-1791965448302-404mf",
+      "timestamp": 1791965448302,
       "from": "reader",
       "to": "critic",
       "type": "result",
@@ -66,13 +63,47 @@
       "reasoning": "Mined and structured 8 granular claims and empirical metrics from source text."
     },
     {
-      "id": "msg-1790845350675-ztv8x",
-      "timestamp": 1790845350675,
+      "id": "msg-1791965448309-2o86e",
+      "timestamp": 1791965448309,
+      "from": "critic",
+      "to": "searcher",
+      "type": "critique",
+      "payload": {
+        "decision": "request_more_evidence",
+        "gaps": [
+          "Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure."
+        ],
+        "followUpQueries": [
+          "Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment"
+        ],
+        "score": 74
+      },
+      "reasoning": "Epistemic audit flagged knowledge gaps. Dispatched 1 targeted search vectors."
+    },
+    {
+      "id": "msg-1791965448310-t6nz1",
+      "timestamp": 1791965448310,
+      "from": "planner",
+      "to": "searcher",
+      "type": "task",
+      "payload": {
+        "updatedHypotheses": [
+          "Hypothesis A: Accelerating adoption of Commercial Viability of Solid-State Batteries by 2030 will yield compounding productivity and efficiency dividends, despite current infrastructure constraints.",
+          "Hypothesis B: Widespread scaling will require addressing critical standardizations, supply-chain/reliability hurdles, and cost parity.",
+          "Refined via Epistemic Critic: Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure. necessitates targeted investigation of enterprise lifecycle amortisation and real-world TCO."
+        ],
+        "addedHypothesis": "Refined via Epistemic Critic: Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure. necessitates targeted investigation of enterprise lifecycle amortisation and real-world TCO."
+      },
+      "reasoning": "Planner updated active working hypotheses in shared memory in response to Critic gap critique."
+    },
+    {
+      "id": "msg-1791965448578-2fcyq",
+      "timestamp": 1791965448578,
       "from": "critic",
       "to": "writer",
       "type": "task",
       "payload": {
-        "overallCredibilityScore": 94,
+        "overallCredibilityScore": 74,
         "verifiedClaimsCount": 3,
         "guidance": [
           "Ensure balanced representation between transformative technological potential and practical integration hurdles.",
@@ -84,87 +115,92 @@
       "reasoning": "Evidence bank audited and approved. Authorizing executive report synthesis."
     },
     {
-      "id": "msg-1790845350708-2akn3",
-      "timestamp": 1790845350708,
+      "id": "msg-1791965448637-vn4mo",
+      "timestamp": 1791965448637,
       "from": "writer",
       "to": "critic",
       "type": "result",
       "payload": {
-        "wordCount": 1275,
-        "citationsCount": 12,
-        "readingTimeMinutes": 7
+        "wordCount": 1094,
+        "citationsCount": 8,
+        "readingTimeMinutes": 6
       },
       "reasoning": "Draft whitepaper compiled with footnote citation mappings. Submitted for post-draft audit."
     }
   ],
   "toolCalls": [
     {
-      "id": "tool-1790845349599-k08x",
+      "id": "tool-1791965447750-yg2t",
       "agent": "searcher",
       "toolName": "web_search_probe",
-      "timestamp": 1790845349599,
+      "timestamp": 1791965447750,
       "input": {
         "query": "Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025"
       },
       "output": {
         "resultsCount": 3
       },
-      "durationMs": 390,
+      "durationMs": 465,
       "success": true
     },
     {
-      "id": "tool-1790845349719-xflz",
+      "id": "tool-1791965447884-6lu3",
       "agent": "searcher",
       "toolName": "web_search_probe",
-      "timestamp": 1790845349719,
+      "timestamp": 1791965447884,
       "input": {
         "query": "Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks"
       },
       "output": {
         "resultsCount": 3
       },
-      "durationMs": 120,
+      "durationMs": 134,
       "success": true
     },
     {
-      "id": "tool-1790845349822-riit",
+      "id": "tool-1791965448009-t99q",
       "agent": "searcher",
       "toolName": "web_search_probe",
-      "timestamp": 1790845349822,
+      "timestamp": 1791965448009,
       "input": {
         "query": "Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics"
       },
       "output": {
         "resultsCount": 3
       },
-      "durationMs": 103,
+      "durationMs": 125,
       "success": true
     },
     {
-      "id": "tool-1790845350260-0cxw",
-      "agent": "searcher",
-      "toolName": "web_search_probe",
-      "timestamp": 1790845350260,
-      "input": {
-        "query": "Commercial Viability of Solid-State Batteries by 2030 expert case studies adoption roadmaps and future outlook"
-      },
-      "output": {
-        "resultsCount": 3
-      },
-      "durationMs": 438,
-      "success": true
-    },
-    {
-      "id": "tool-1790845350671-xmsp",
+      "id": "tool-1791965448295-yr64",
       "agent": "reader",
       "toolName": "document_parser_and_ingestion",
-      "timestamp": 1790845350671,
+      "timestamp": 1791965448295,
       "input": {
-        "documentId": "src-7g2u80b",
+        "documentId": "src-tgnmu7n",
         "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment"
       },
       "output": {
-        "documentId": "src-7g2u80b",
+        "documentId": "src-tgnmu7n",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
+        "wordCount": 50,
+        "extractedCandidateFacts": 1,
+        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025\" relative to \"Commercial Viability of Soli..."
+      },
+      "durationMs": 2,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448295-2cbc",
+      "agent": "reader",
+      "toolName": "document_parser_and_ingestion",
+      "timestamp": 1791965448295,
+      "input": {
+        "documentId": "src-pidelxk",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment"
+      },
+      "output": {
+        "documentId": "src-pidelxk",
         "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
         "wordCount": 50,
         "extractedCandidateFacts": 1,
@@ -174,54 +210,16 @@
       "success": true
     },
     {
-      "id": "tool-1790845350671-ckoe",
+      "id": "tool-1791965448295-rgok",
       "agent": "reader",
       "toolName": "document_parser_and_ingestion",
-      "timestamp": 1790845350671,
+      "timestamp": 1791965448295,
       "input": {
-        "documentId": "src-3qhl0r5",
-        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment"
-      },
-      "output": {
-        "documentId": "src-3qhl0r5",
-        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
-        "wordCount": 50,
-        "extractedCandidateFacts": 1,
-        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025\" relative to \"Commercial Viability of Soli..."
-      },
-      "durationMs": 0,
-      "success": true
-    },
-    {
-      "id": "tool-1790845350671-9i0w",
-      "agent": "reader",
-      "toolName": "document_parser_and_ingestion",
-      "timestamp": 1790845350671,
-      "input": {
-        "documentId": "src-qmag9wm",
-        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment"
-      },
-      "output": {
-        "documentId": "src-qmag9wm",
-        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
-        "wordCount": 50,
-        "extractedCandidateFacts": 1,
-        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025\" relative to \"Commercial Viability of Soli..."
-      },
-      "durationMs": 0,
-      "success": true
-    },
-    {
-      "id": "tool-1790845350672-5uy5",
-      "agent": "reader",
-      "toolName": "document_parser_and_ingestion",
-      "timestamp": 1790845350672,
-      "input": {
-        "documentId": "src-dm5dzlv",
+        "documentId": "src-p7e3s00",
         "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment"
       },
       "output": {
-        "documentId": "src-dm5dzlv",
+        "documentId": "src-p7e3s00",
         "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
         "wordCount": 48,
         "extractedCandidateFacts": 1,
@@ -231,73 +229,92 @@
       "success": true
     },
     {
-      "id": "tool-1790845350673-9taa",
-      "agent": "critic",
-      "toolName": "epistemic_scoring_rubric",
-      "timestamp": 1790845350673,
+      "id": "tool-1791965448295-3wyq",
+      "agent": "reader",
+      "toolName": "document_parser_and_ingestion",
+      "timestamp": 1791965448295,
       "input": {
-        "sourceId": "src-7g2u80b",
-        "domain": "mckinsey.com"
+        "documentId": "src-1mo4v0j",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment"
       },
       "output": {
-        "scorecard": {
-          "sourceId": "src-7g2u80b",
-          "domain": "mckinsey.com",
-          "credibilityScore": 68,
-          "authorityLevel": "Medium",
-          "biasRating": "Moderate",
-          "flags": [],
-          "verdict": "Flagged: source fails minimum epistemic threshold (68/100)"
-        },
-        "credibilityScore": 68,
-        "relevanceScore": 75,
-        "recencyScore": 20,
-        "biasPenalty": 0,
-        "passedThreshold": false
+        "documentId": "src-1mo4v0j",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
+        "wordCount": 48,
+        "extractedCandidateFacts": 1,
+        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks\" relative to \"Commercial Viability of Solid-State Batteri..."
       },
       "durationMs": 0,
       "success": true
     },
     {
-      "id": "tool-1790845350673-bv1u",
+      "id": "tool-1791965448304-r2q4",
       "agent": "critic",
       "toolName": "epistemic_scoring_rubric",
-      "timestamp": 1790845350673,
+      "timestamp": 1791965448304,
       "input": {
-        "sourceId": "src-3qhl0r5",
-        "domain": "mit.edu"
-      },
-      "output": {
-        "scorecard": {
-          "sourceId": "src-3qhl0r5",
-          "domain": "mit.edu",
-          "credibilityScore": 75,
-          "authorityLevel": "High",
-          "biasRating": "Academic",
-          "flags": [],
-          "verdict": "Verified reference passed rigor audit (75/100)"
-        },
-        "credibilityScore": 75,
-        "relevanceScore": 75,
-        "recencyScore": 20,
-        "biasPenalty": 0,
-        "passedThreshold": true
-      },
-      "durationMs": 0,
-      "success": true
-    },
-    {
-      "id": "tool-1790845350673-bjud",
-      "agent": "critic",
-      "toolName": "epistemic_scoring_rubric",
-      "timestamp": 1790845350673,
-      "input": {
-        "sourceId": "src-qmag9wm",
+        "sourceId": "src-tgnmu7n",
         "domain": "reuters.com"
       },
       "output": {
         "scorecard": {
-          "sourceId": "src-qmag9wm",
+          "sourceId": "src-tgnmu7n",
+          "domain": "reuters.com",
+          "credibilityScore": 88,
+          "authorityLevel": "High",
+          "biasRating": "Minimal",
+          "flags": [],
+          "verdict": "Verified reference passed rigor audit (88/100)"
+        },
+        "credibilityScore": 88,
+        "relevanceScore": 80,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": true
+      },
+      "durationMs": 2,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448305-5i4h",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448305,
+      "input": {
+        "sourceId": "src-pidelxk",
+        "domain": "arxiv.org"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-pidelxk",
+          "domain": "arxiv.org",
+          "credibilityScore": 85,
+          "authorityLevel": "High",
+          "biasRating": "Academic",
+          "flags": [],
+          "verdict": "Verified reference passed rigor audit (85/100)"
+        },
+        "credibilityScore": 85,
+        "relevanceScore": 80,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": true
+      },
+      "durationMs": 1,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448305-r0qv",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448305,
+      "input": {
+        "sourceId": "src-p7e3s00",
+        "domain": "reuters.com"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-p7e3s00",
           "domain": "reuters.com",
           "credibilityScore": 78,
           "authorityLevel": "High",
@@ -315,18 +332,46 @@
       "success": true
     },
     {
-      "id": "tool-1790845350674-pvsh",
+      "id": "tool-1791965448306-b123",
       "agent": "critic",
       "toolName": "epistemic_scoring_rubric",
-      "timestamp": 1790845350674,
+      "timestamp": 1791965448306,
       "input": {
-        "sourceId": "src-dm5dzlv",
-        "domain": "nih.gov"
+        "sourceId": "src-1mo4v0j",
+        "domain": "mckinsey.com"
       },
       "output": {
         "scorecard": {
-          "sourceId": "src-dm5dzlv",
-          "domain": "nih.gov",
+          "sourceId": "src-1mo4v0j",
+          "domain": "mckinsey.com",
+          "credibilityScore": 58,
+          "authorityLevel": "Medium",
+          "biasRating": "Moderate",
+          "flags": [],
+          "verdict": "Flagged: source fails minimum epistemic threshold (58/100)"
+        },
+        "credibilityScore": 58,
+        "relevanceScore": 75,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": false
+      },
+      "durationMs": 1,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448306-w3rl",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448306,
+      "input": {
+        "sourceId": "src-sc0cdtm",
+        "domain": "arxiv.org"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-sc0cdtm",
+          "domain": "arxiv.org",
           "credibilityScore": 75,
           "authorityLevel": "High",
           "biasRating": "Academic",
@@ -343,18 +388,183 @@
       "success": true
     },
     {
-      "id": "tool-1790845350674-6aeo",
+      "id": "tool-1791965448438-f4wt",
+      "agent": "searcher",
+      "toolName": "web_search_probe",
+      "timestamp": 1791965448438,
+      "input": {
+        "query": "Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment",
+        "reason": "Critic Replan Vector"
+      },
+      "output": {
+        "resultsCount": 3
+      },
+      "durationMs": 128,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448577-qzz4",
+      "agent": "reader",
+      "toolName": "document_parser_and_ingestion",
+      "timestamp": 1791965448577,
+      "input": {
+        "documentId": "src-und89k2",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment"
+      },
+      "output": {
+        "documentId": "src-und89k2",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "wordCount": 50,
+        "extractedCandidateFacts": 1,
+        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment\" relative to \"Commercial Viability of Solid-State B..."
+      },
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448577-ccq2",
+      "agent": "reader",
+      "toolName": "document_parser_and_ingestion",
+      "timestamp": 1791965448577,
+      "input": {
+        "documentId": "src-6u1a6a8",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment"
+      },
+      "output": {
+        "documentId": "src-6u1a6a8",
+        "title": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "wordCount": 50,
+        "extractedCandidateFacts": 1,
+        "previewSummary": "Comprehensive investigation assessing \"Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment\" relative to \"Commercial Viability of Solid-State B..."
+      },
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448577-2l5e",
       "agent": "critic",
       "toolName": "epistemic_scoring_rubric",
-      "timestamp": 1790845350674,
+      "timestamp": 1791965448577,
       "input": {
-        "sourceId": "src-frldkgp",
-        "domain": "ieee.org"
+        "sourceId": "src-tgnmu7n",
+        "domain": "reuters.com"
       },
       "output": {
         "scorecard": {
-          "sourceId": "src-frldkgp",
-          "domain": "ieee.org",
+          "sourceId": "src-tgnmu7n",
+          "domain": "reuters.com",
+          "credibilityScore": 88,
+          "authorityLevel": "High",
+          "biasRating": "Minimal",
+          "flags": [],
+          "verdict": "Verified reference passed rigor audit (88/100)"
+        },
+        "credibilityScore": 88,
+        "relevanceScore": 80,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": true
+      },
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448577-wsjh",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448577,
+      "input": {
+        "sourceId": "src-pidelxk",
+        "domain": "arxiv.org"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-pidelxk",
+          "domain": "arxiv.org",
+          "credibilityScore": 85,
+          "authorityLevel": "High",
+          "biasRating": "Academic",
+          "flags": [],
+          "verdict": "Verified reference passed rigor audit (85/100)"
+        },
+        "credibilityScore": 85,
+        "relevanceScore": 80,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": true
+      },
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448578-j75b",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448578,
+      "input": {
+        "sourceId": "src-p7e3s00",
+        "domain": "reuters.com"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-p7e3s00",
+          "domain": "reuters.com",
+          "credibilityScore": 78,
+          "authorityLevel": "High",
+          "biasRating": "Minimal",
+          "flags": [],
+          "verdict": "Verified reference passed rigor audit (78/100)"
+        },
+        "credibilityScore": 78,
+        "relevanceScore": 75,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": true
+      },
+      "durationMs": 1,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448578-lwvh",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448578,
+      "input": {
+        "sourceId": "src-1mo4v0j",
+        "domain": "mckinsey.com"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-1mo4v0j",
+          "domain": "mckinsey.com",
+          "credibilityScore": 58,
+          "authorityLevel": "Medium",
+          "biasRating": "Moderate",
+          "flags": [],
+          "verdict": "Flagged: source fails minimum epistemic threshold (58/100)"
+        },
+        "credibilityScore": 58,
+        "relevanceScore": 75,
+        "recencyScore": 20,
+        "biasPenalty": 0,
+        "passedThreshold": false
+      },
+      "durationMs": 0,
+      "success": true
+    },
+    {
+      "id": "tool-1791965448578-mr86",
+      "agent": "critic",
+      "toolName": "epistemic_scoring_rubric",
+      "timestamp": 1791965448578,
+      "input": {
+        "sourceId": "src-sc0cdtm",
+        "domain": "arxiv.org"
+      },
+      "output": {
+        "scorecard": {
+          "sourceId": "src-sc0cdtm",
+          "domain": "arxiv.org",
           "credibilityScore": 75,
           "authorityLevel": "High",
           "biasRating": "Academic",
@@ -371,14 +581,48 @@
       "success": true
     }
   ],
-  "replanLoops": [],
+  "replanLoops": [
+    {
+      "loopNumber": 1,
+      "from": "critic",
+      "to": "searcher",
+      "reason": "Critic requested supplementary evidence: Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure.",
+      "timestamp": 1791965448309,
+      "details": "Dispatched 1 targeted search queries. Re-querying to resolve gaps.",
+      "queryBefore": [
+        "Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025",
+        "Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks",
+        "Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics"
+      ],
+      "queryAfter": [
+        "Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment"
+      ],
+      "scoreBefore": 74,
+      "scoreAfter": 74
+    },
+    {
+      "loopNumber": 2,
+      "from": "searcher",
+      "to": "reader",
+      "reason": "Reader processing newly retrieved supplementary sources",
+      "timestamp": 1791965448577,
+      "details": "Mined facts from 2 newly discovered authority sources."
+    },
+    {
+      "loopNumber": 3,
+      "from": "reader",
+      "to": "critic",
+      "reason": "Critic re-auditing consolidated evidence bank",
+      "timestamp": 1791965448577
+    }
+  ],
   "sharedMemorySnapshot": {
     "verifiedFacts": [
       {
         "id": "fact-1",
-        "sourceId": "src-7g2u80b",
+        "sourceId": "src-tgnmu7n",
         "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
-        "sourceUrl": "https://mckinsey.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
+        "sourceUrl": "https://reuters.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
         "fact": "Recent empirical evaluations in Commercial Viability of Solid-State Batteries by 2030 demonstrate an average performance multiplier of 3.4x to 6.2x compared to legacy benchmarks.",
         "quote": "Data indicates a marked transition in throughput, scaling efficiency, and reduced latency across standard testbeds.",
         "category": "statistic",
@@ -387,9 +631,9 @@
       },
       {
         "id": "fact-2",
-        "sourceId": "src-3qhl0r5",
+        "sourceId": "src-pidelxk",
         "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
-        "sourceUrl": "https://mit.edu/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
+        "sourceUrl": "https://arxiv.org/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
         "fact": "Cross-institutional studies identify operational scalability and integration friction as the primary impediment, accounting for 48% of deployment bottlenecks.",
         "quote": "Architectural interoperability remains the highest friction vector during enterprise scaling.",
         "category": "finding",
@@ -398,9 +642,9 @@
       },
       {
         "id": "fact-3",
-        "sourceId": "src-qmag9wm",
-        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
-        "sourceUrl": "https://reuters.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
+        "sourceId": "src-p7e3s00",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
+        "sourceUrl": "https://reuters.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-key-challenges-architecture-limitations-and-risks",
         "fact": "Global capital allocation and enterprise investment targeting Commercial Viability of Solid-State Batteries by 2030 surged by 41.5% year-over-year, driven by accelerated infrastructure readiness.",
         "quote": "Private and institutional capital flows reflect an accelerating commitment to early-mover ecosystems.",
         "category": "statistic",
@@ -409,9 +653,9 @@
       },
       {
         "id": "fact-4",
-        "sourceId": "src-dm5dzlv",
+        "sourceId": "src-1mo4v0j",
         "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
-        "sourceUrl": "https://nih.gov/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-key-challenges-architecture-limitations-and-risks",
+        "sourceUrl": "https://mckinsey.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-key-challenges-architecture-limitations-and-risks",
         "fact": "Leading technical authorities highlight that algorithmic robustness and governance frameworks must mature in tandem to prevent systematic edge-case failures.",
         "quote": "Without rigorous validation and continuous auditing, cascading faults can emerge under extreme operational loads.",
         "category": "expert_opinion",
@@ -420,9 +664,9 @@
       },
       {
         "id": "fact-5",
-        "sourceId": "src-frldkgp",
-        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
-        "sourceUrl": "https://ieee.org/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-key-challenges-architecture-limitations-and-risks",
+        "sourceId": "src-sc0cdtm",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics - Global Assessment",
+        "sourceUrl": "https://arxiv.org/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-quantitative-benchmarks-comparative-performance-statistics",
         "fact": "Counter-analysis reveals that total cost of ownership (TCO) during initial 18 months can exceed initial estimates by 22-35% due to specialized talent and compute requirements.",
         "quote": "Hidden operational overhead frequently tempers short-term return on investment projections.",
         "category": "counter_argument",
@@ -431,9 +675,9 @@
       },
       {
         "id": "fact-6",
-        "sourceId": "src-w7jmqd3",
-        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 key challenges architecture limitations and risks - Global Assessment",
-        "sourceUrl": "https://gartner.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-key-challenges-architecture-limitations-and-risks",
+        "sourceId": "src-cjyihy6",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics - Global Assessment",
+        "sourceUrl": "https://reuters.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-quantitative-benchmarks-comparative-performance-statistics",
         "fact": "Forecast models predict next-generation standardization and modular protocols will unlock wide commercial parity by late 2026 to 2027.",
         "quote": "The next architectural wave is expected to democratize deployment barriers significantly.",
         "category": "projection",
@@ -442,9 +686,9 @@
       },
       {
         "id": "fact-7",
-        "sourceId": "src-a1dawju",
-        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics - Global Assessment",
-        "sourceUrl": "https://mit.edu/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-quantitative-benchmarks-comparative-performance-statistics",
+        "sourceId": "src-tgnmu7n",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
+        "sourceUrl": "https://reuters.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
         "fact": "Comparative audits indicate a 67% reduction in processing cycle duration when implementing distributed asynchronous pipelines over centralized monolithic architectures.",
         "quote": "Asynchronous multi-agent orchestration minimizes blocking I/O and optimizes resource allocation.",
         "category": "finding",
@@ -453,9 +697,97 @@
       },
       {
         "id": "fact-8",
-        "sourceId": "src-mks1fn0",
-        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 quantitative benchmarks comparative performance statistics - Global Assessment",
-        "sourceUrl": "https://nih.gov/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-quantitative-benchmarks-comparative-performance-statistics",
+        "sourceId": "src-pidelxk",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 market overview trends and technological breakthroughs 2024 2025 - Global Assessment",
+        "sourceUrl": "https://arxiv.org/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-market-overview-trends-and-technological-breakthroughs-2024-2025",
+        "fact": "Standardized benchmark testing across 12 distinct environments verified 99.4% uptime and deterministic failover capabilities under peak stress.",
+        "quote": "Resilience testing validates fault-tolerance thresholds across distributed execution environments.",
+        "category": "finding",
+        "confidence": 0.93,
+        "timeframe": "2024-2025"
+      },
+      {
+        "id": "fact-1",
+        "sourceId": "src-und89k2",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://mckinsey.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Recent empirical evaluations in Commercial Viability of Solid-State Batteries by 2030 demonstrate an average performance multiplier of 3.4x to 6.2x compared to legacy benchmarks.",
+        "quote": "Data indicates a marked transition in throughput, scaling efficiency, and reduced latency across standard testbeds.",
+        "category": "statistic",
+        "confidence": 0.94,
+        "timeframe": "2024-2025"
+      },
+      {
+        "id": "fact-2",
+        "sourceId": "src-6u1a6a8",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://gartner.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Cross-institutional studies identify operational scalability and integration friction as the primary impediment, accounting for 48% of deployment bottlenecks.",
+        "quote": "Architectural interoperability remains the highest friction vector during enterprise scaling.",
+        "category": "finding",
+        "confidence": 0.89,
+        "timeframe": "2024"
+      },
+      {
+        "id": "fact-3",
+        "sourceId": "src-und89k2",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://mckinsey.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Global capital allocation and enterprise investment targeting Commercial Viability of Solid-State Batteries by 2030 surged by 41.5% year-over-year, driven by accelerated infrastructure readiness.",
+        "quote": "Private and institutional capital flows reflect an accelerating commitment to early-mover ecosystems.",
+        "category": "statistic",
+        "confidence": 0.92,
+        "timeframe": "2024-2025"
+      },
+      {
+        "id": "fact-4",
+        "sourceId": "src-6u1a6a8",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://gartner.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Leading technical authorities highlight that algorithmic robustness and governance frameworks must mature in tandem to prevent systematic edge-case failures.",
+        "quote": "Without rigorous validation and continuous auditing, cascading faults can emerge under extreme operational loads.",
+        "category": "expert_opinion",
+        "confidence": 0.91,
+        "timeframe": "2025"
+      },
+      {
+        "id": "fact-5",
+        "sourceId": "src-und89k2",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://mckinsey.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Counter-analysis reveals that total cost of ownership (TCO) during initial 18 months can exceed initial estimates by 22-35% due to specialized talent and compute requirements.",
+        "quote": "Hidden operational overhead frequently tempers short-term return on investment projections.",
+        "category": "counter_argument",
+        "confidence": 0.88,
+        "timeframe": "2024-2025"
+      },
+      {
+        "id": "fact-6",
+        "sourceId": "src-6u1a6a8",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://gartner.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Forecast models predict next-generation standardization and modular protocols will unlock wide commercial parity by late 2026 to 2027.",
+        "quote": "The next architectural wave is expected to democratize deployment barriers significantly.",
+        "category": "projection",
+        "confidence": 0.85,
+        "timeframe": "2026-2027"
+      },
+      {
+        "id": "fact-7",
+        "sourceId": "src-und89k2",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://mckinsey.com/reports/2024/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
+        "fact": "Comparative audits indicate a 67% reduction in processing cycle duration when implementing distributed asynchronous pipelines over centralized monolithic architectures.",
+        "quote": "Asynchronous multi-agent orchestration minimizes blocking I/O and optimizes resource allocation.",
+        "category": "finding",
+        "confidence": 0.96,
+        "timeframe": "2025"
+      },
+      {
+        "id": "fact-8",
+        "sourceId": "src-6u1a6a8",
+        "sourceTitle": "Commercial Viability of Solid-State Batteries by 2030: Commercial Viability of Solid-State Batteries by 2030 total cost of ownership 2025 2026 enterprise deployment - Global Assessment",
+        "sourceUrl": "https://gartner.com/reports/2025/commercial-viability-of-solidstate-batteries-by-2030-total-cost-of-ownership-2025-2026-enterprise-deployment",
         "fact": "Standardized benchmark testing across 12 distinct environments verified 99.4% uptime and deterministic failover capabilities under peak stress.",
         "quote": "Resilience testing validates fault-tolerance thresholds across distributed execution environments.",
         "category": "finding",
@@ -473,17 +805,18 @@
     ],
     "activeHypotheses": [
       "Hypothesis A: Accelerating adoption of Commercial Viability of Solid-State Batteries by 2030 will yield compounding productivity and efficiency dividends, despite current infrastructure constraints.",
-      "Hypothesis B: Widespread scaling will require addressing critical standardizations, supply-chain/reliability hurdles, and cost parity."
+      "Hypothesis B: Widespread scaling will require addressing critical standardizations, supply-chain/reliability hurdles, and cost parity.",
+      "Refined via Epistemic Critic: Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure. necessitates targeted investigation of enterprise lifecycle amortisation and real-world TCO."
     ],
     "knowledgeGaps": [
       "Need granular 2025-2026 economic benchmarks on operational TCO versus legacy infrastructure."
     ],
-    "replanCount": 0
+    "replanCount": 3
   },
   "finalReportSummary": {
     "title": "Commercial Viability of Solid-State Batteries by 2030: Comprehensive Strategic & Technical Analysis",
-    "wordCount": 1275,
-    "citationCount": 12,
-    "epistemicScore": 94
+    "wordCount": 1094,
+    "citationCount": 8,
+    "epistemicScore": 74
   }
 }

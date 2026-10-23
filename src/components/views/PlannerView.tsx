@@ -70,24 +70,24 @@ export const PlannerView: React.FC<PlannerViewProps> = ({
   return (
     <div className="space-y-6 pb-20 w-full">
       {/* Header Banner */}
-      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(16,24,40,0.06)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="liquid-glass p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-[#EEF2FF] border border-[#C7D2FE] flex items-center justify-center text-[#6366F1] shrink-0">
+          <div className="w-12 h-12 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center text-white shrink-0">
             <Compass className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-[#14181F]">
+              <h2 className="text-lg font-bold text-current">
                 Stage 01: Strategic Planner
               </h2>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase bg-indigo-50 text-indigo-700 font-bold border border-indigo-200">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase liquid-glass-subtle font-bold">
                 {agent.status}
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-blue-50 text-blue-700 border border-blue-200 font-medium">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono liquid-glass-subtle font-medium">
                 Human Steering Enabled
               </span>
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs opacity-70">
               Deconstructs research subject taxonomy, core hypotheses, targeted audience parameters, and boolean queries.
             </p>
           </div>
@@ -95,8 +95,8 @@ export const PlannerView: React.FC<PlannerViewProps> = ({
 
         {agent.durationMs && (
           <div className="text-right hidden sm:block">
-            <span className="text-[10px] font-mono text-[#9CA3AF] block uppercase">Runtime</span>
-            <span className="text-sm font-mono font-bold text-[#14181F]">
+            <span className="text-[10px] font-mono opacity-50 block uppercase">Runtime</span>
+            <span className="text-sm font-mono font-bold text-current">
               {(agent.durationMs / 1000).toFixed(1)}s
             </span>
           </div>
@@ -104,12 +104,12 @@ export const PlannerView: React.FC<PlannerViewProps> = ({
       </div>
 
       {!plan ? (
-        <div className="bg-white rounded-2xl border border-[#E5E7EB] p-16 text-center text-[#6B7280] space-y-3 shadow-xs">
+        <div className="liquid-glass p-16 text-center opacity-80 space-y-3">
           <Compass className="w-12 h-12 mx-auto text-[#6366F1] animate-spin" />
-          <h3 className="text-base font-bold text-[#14181F]">
+          <h3 className="text-base font-bold text-current">
             Awaiting Research Strategy Formulation
           </h3>
-          <p className="text-xs text-[#6B7280] max-w-md mx-auto">
+          <p className="text-xs opacity-70 max-w-md mx-auto">
             Launch a research topic from the top bar to watch the Planner agent decompose requirements and construct targeted inquiry vectors.
           </p>
         </div>
@@ -118,23 +118,23 @@ export const PlannerView: React.FC<PlannerViewProps> = ({
           {/* Left Column: Scope, Hypotheses & Audience (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
             {/* Target Audience */}
-            <div className="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_8px_rgba(16,24,40,0.04)] space-y-2">
+            <div className="liquid-glass p-5 space-y-2">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6366F1]">
                 <Target className="w-4 h-4" />
                 Target Audience &amp; Analytical Scope
               </div>
-              <p className="text-sm font-medium text-[#14181F] leading-relaxed">
+              <p className="text-sm font-medium leading-relaxed text-current">
                 {plan.targetAudience}
               </p>
               <div className="pt-2 flex items-center gap-2">
-                <span className="text-[11px] font-mono bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full border border-indigo-200 font-semibold">
+                <span className="text-[11px] font-mono liquid-glass-subtle !px-2.5 !py-1 font-semibold">
                   Depth: {plan.depth.toUpperCase()}
                 </span>
               </div>
             </div>
 
             {/* Core Objectives */}
-            <div className="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_8px_rgba(16,24,40,0.04)] space-y-3">
+            <div className="liquid-glass p-5 space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6366F1]">
                 <Sparkles className="w-4 h-4" />
                 Core Research Objectives

@@ -79,21 +79,21 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
   return (
     <div className="space-y-6 pb-20 w-full">
       {/* Header Banner */}
-      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(16,24,40,0.06)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="liquid-glass p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-[#ECFEFF] border border-[#A5F3FC] flex items-center justify-center text-[#06B6D4] shrink-0">
+          <div className="w-12 h-12 rounded-2xl liquid-glass-tinted-blue flex items-center justify-center text-cyan-300 shrink-0">
             <Search className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-[#14181F]">
+              <h2 className="text-lg font-bold text-current">
                 Stage 02: Literature Scout
               </h2>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase bg-cyan-50 text-cyan-800 font-bold border border-cyan-200">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase liquid-glass-subtle font-bold">
                 {agent.status}
               </span>
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs opacity-70">
               Dispatches multi-angle web and academic probes to retrieve primary source literature, datasets, and reports.
             </p>
           </div>
@@ -102,16 +102,16 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsAddingSource(!isAddingSource)}
-            className="flex items-center gap-1.5 h-[38px] px-4 rounded-full bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] border border-[#D1D5DB] transition-all shadow-xs"
+            className="flex items-center gap-1.5 h-[38px] px-4 rounded-full liquid-glass-subtle hover:opacity-100 text-xs font-semibold text-current transition-all shadow-xs"
           >
             <Plus className="w-4 h-4 text-[#06B6D4]" />
             <span>Add Custom Source</span>
           </button>
           <div className="text-right hidden md:block">
-            <span className="text-[10px] font-mono text-[#9CA3AF] block uppercase">
+            <span className="text-[10px] font-mono opacity-50 block uppercase">
               Indexed Sources
             </span>
-            <span className="text-sm font-mono font-bold text-[#14181F]">
+            <span className="text-sm font-mono font-bold text-current">
               {sources.length} Documents
             </span>
           </div>
@@ -122,7 +122,7 @@ export const SearcherView: React.FC<SearcherViewProps> = ({
       {isAddingSource && (
         <form
           onSubmit={handleAddSubmit}
-          className="bg-white p-5 rounded-2xl border border-[#06B6D4]/40 shadow-md space-y-3"
+          className="liquid-glass p-5 space-y-3"
         >
           <h4 className="text-xs font-bold text-[#0891B2] uppercase tracking-wider">
             Inject Verified Reference URL / Publication

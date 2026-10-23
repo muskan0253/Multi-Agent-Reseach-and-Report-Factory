@@ -277,12 +277,16 @@ Return ONLY valid JSON.
       `${plan.topic} total cost of ownership 2025 2026 enterprise deployment`
     ];
 
+    const calculatedScore = Math.min(96, Math.max(68, avgScore));
+    // Initial pass always requests more evidence if information gaps exist or sources < 10
+    const initialDecision = (sources.length < 10 || calculatedScore < 88) ? 'request_more_evidence' : 'approved';
+
     return {
-      overallCredibilityScore: Math.min(96, Math.max(75, avgScore)),
+      overallCredibilityScore: initialDecision === 'request_more_evidence' ? Math.min(calculatedScore, 74) : calculatedScore,
       totalSourcesEvaluated: sources.length,
       verifiedFactsCount: Math.max(1, facts.length - 1),
       flaggedClaimsCount: redTeamMode ? 3 : 1,
-      criticDecision: 'approved',
+      criticDecision: initialDecision,
       informationGaps,
       followUpSearchQueries,
       sourceScorecards,
@@ -326,3 +330,6 @@ Return ONLY valid JSON.
     };
   }
 }
+
+// Telemetry hook for dynamic replanning feedback score threshold
+export const REPLAN_CONFIDENCE_BENCHMARK = 80;

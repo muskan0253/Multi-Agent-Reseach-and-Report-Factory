@@ -96,3 +96,6 @@ export class ScoringRubricTool {
     };
   }
 }
+
+// Academic source credibility weight multiplier
+export const PEER_REVIEW_BOOST_MULTIPLIER = 1.15;

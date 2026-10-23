@@ -1,0 +1,82 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1084 >>
+stream
+BT
+/F2 16 Tf
+50 740 Td
+(Multi-Agent Research Factory: Design Document) Tj
+ET
+BT
+/F2 12 Tf
+50 700 Td
+(1. Architecture & Agent Specialization) Tj
+ET
+BT
+/F1 10 Tf
+50 682 Td
+(The platform implements 5 specialized agents with distinct domain responsibilities:) Tj
+T*
+(PlannerAgent \(Decomposition\), SearcherAgent \(Targeted retrieval\), ReaderAgent \(Fact extraction\),) Tj
+T*
+(CriticAgent \(Rubric verification & closed-loop replan trigger\), WriterAgent \(Whitepaper synthesis\).) Tj
+T*
+ET
+BT
+/F2 12 Tf
+50 626 Td
+(2. Inter-Agent Communication & Replanning Loop) Tj
+ET
+BT
+/F1 10 Tf
+50 608 Td
+(Decoupled pub-sub message bus ensures clean event-driven state transitions.) Tj
+T*
+(CriticAgent enforces academic credibility scoring \(Authority 30%, Freshness 25%, Rigor 25%, Consensus 20%\).) Tj
+T*
+(Feedback loop re-engages Planner & Searcher dynamically when evidence gaps occur.) Tj
+T*
+ET
+BT
+/F2 12 Tf
+50 552 Td
+(3. Data Flow & Security Guarantees) Tj
+ET
+BT
+/F1 10 Tf
+50 534 Td
+(Immutable execution traces, schema-validated payloads \(Zod/JSON Schema\), local sandbox execution.) Tj
+T*
+ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001387 00000 n 
+0000001457 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1532
+%%EOF

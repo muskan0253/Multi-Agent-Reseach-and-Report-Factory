@@ -19,8 +19,12 @@ import {
   Clock,
   ChevronDown,
   ChevronUp,
+  Type,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react';
 import { FinalReport, ResearchWorkflowState } from '../lib/types';
+import { usePreferences, AppFont } from '../context/PreferencesContext';
 
 interface ReportViewerProps {
   state: ResearchWorkflowState;
@@ -33,6 +37,8 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
   report,
   streamingChunk,
 }) => {
+  const { font, setFont, theme } = usePreferences();
+  const [zoomLevel, setZoomLevel] = useState(100);
   const [copied, setCopied] = useState(false);
   const [showToc, setShowToc] = useState(false);
   const [highlightedCitation, setHighlightedCitation] = useState<number | null>(null);
@@ -210,10 +216,46 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
 
         {/* Action Controls & Export Buttons (Pill Shapes) */}
         <div className="flex items-center gap-2 flex-wrap">
+          {/* Real-time Typography Selector */}
+          <div className="flex items-center gap-1 bg-white dark:bg-[#1E293B] border border-[#D1D5DB] dark:border-[#334155] rounded-full px-2.5 h-[38px]">
+            <Type className="w-3.5 h-3.5 text-[#7C3AED]" />
+            <select
+              value={font}
+              onChange={(e) => setFont(e.target.value as AppFont)}
+              className="bg-transparent text-xs font-semibold text-[#14181F] dark:text-white focus:outline-none cursor-pointer"
+              title="Change Whitepaper Font"
+            >
+              <option value="inter">Inter Sans</option>
+              <option value="serif">Editorial Serif</option>
+              <option value="mono">Technical Mono</option>
+              <option value="lexend">Lexend Soft</option>
+              <option value="playfair">Playfair Academic</option>
+            </select>
+          </div>
+
+          {/* Zoom controls */}
+          <div className="flex items-center gap-0.5 bg-white dark:bg-[#1E293B] border border-[#D1D5DB] dark:border-[#334155] rounded-full px-1.5 h-[38px]">
+            <button
+              onClick={() => setZoomLevel((z) => Math.max(80, z - 10))}
+              className="p-1 hover:text-[#2563EB] text-[#6B7280]"
+              title="Decrease Font Size"
+            >
+              <ZoomOut className="w-3.5 h-3.5" />
+            </button>
+            <span className="text-[11px] font-mono px-1 font-bold">{zoomLevel}%</span>
+            <button
+              onClick={() => setZoomLevel((z) => Math.min(140, z + 10))}
+              className="p-1 hover:text-[#2563EB] text-[#6B7280]"
+              title="Increase Font Size"
+            >
+              <ZoomIn className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
           {tableOfContents.length > 0 && (
             <button
               onClick={() => setShowToc(!showToc)}
-              className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] border border-[#D1D5DB] transition-all shadow-xs"
+              className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white dark:bg-[#1E293B] hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] dark:text-white border border-[#D1D5DB] dark:border-[#334155] transition-all shadow-xs"
               title="Toggle Table of Contents"
             >
               <List className="w-3.5 h-3.5 text-[#6B7280]" />
@@ -224,7 +266,7 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
 
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] border border-[#D1D5DB] transition-all shadow-xs"
+            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white dark:bg-[#1E293B] hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] dark:text-white border border-[#D1D5DB] dark:border-[#334155] transition-all shadow-xs"
             title="Copy Markdown Content"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-[#16A34A]" /> : <Copy className="w-3.5 h-3.5 text-[#6B7280]" />}
@@ -233,7 +275,7 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
 
           <button
             onClick={handleDownloadMarkdown}
-            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] border border-[#D1D5DB] transition-all shadow-xs"
+            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-white dark:bg-[#1E293B] hover:bg-[#F8FAFC] text-xs font-semibold text-[#14181F] dark:text-white border border-[#D1D5DB] dark:border-[#334155] transition-all shadow-xs"
             title="Export as Markdown"
           >
             <Download className="w-3.5 h-3.5 text-[#6B7280]" />
@@ -242,7 +284,7 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
 
           <button
             onClick={handlePrint}
-            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-[#151A17] hover:bg-[#262E29] text-white text-xs font-semibold transition-all shadow-xs"
+            className="flex items-center gap-1.5 h-[38px] px-3.5 rounded-full bg-[#151A17] dark:bg-[#2563EB] hover:bg-[#262E29] text-white text-xs font-semibold transition-all shadow-xs"
             title="Print or Save as PDF"
           >
             <Printer className="w-3.5 h-3.5" />
@@ -275,7 +317,10 @@ export const ReportViewer: React.FC<ReportViewerProps> = ({
       )}
 
       {/* Main Document Body: Centered 760px column, 17px/1.7 text */}
-      <div className="flex-1 overflow-y-auto p-6 sm:p-10 lg:p-14 bg-white">
+      <div
+        className="flex-1 overflow-y-auto p-6 sm:p-10 lg:p-14 bg-white dark:bg-[#0B0F19] text-[#14181F] dark:text-[#E2E8F0] transition-colors duration-150"
+        style={{ fontSize: `${(17 * zoomLevel) / 100}px` }}
+      >
         {!markdownToRender ? (
           <div className="text-center py-20 max-w-md mx-auto space-y-3">
             <div className="w-14 h-14 rounded-2xl bg-[#FAF5FF] border border-[#E9D5FF] flex items-center justify-center mx-auto text-[#A855F7]">

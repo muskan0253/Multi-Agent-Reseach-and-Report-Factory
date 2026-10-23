@@ -1,0 +1,116 @@
+================================================================================
+INPUT DEFINITION SPECIFICATION: MULTI-AGENT RESEARCH & REPORT FACTORY
+Exam Studio Track: Advanced Agentic Coding & Autonomous Multi-Agent Workflows
+Team Members:
+  - Anushka Tandon (23070122262) - Project Lead / Multi-Agent Architecture
+  - Jyoti Kumari Sah (23070122278) - Epistemic Verification & Critic Engine
+  - Muskan Shah (23070122279) - Literature Scout & Vector Retrieval Tools
+  - Lauriane Lenge Wa Mpitshi (23070122260) - Reader Agent & Data Pipeline
+Repository: https://github.com/AnushkaTandon26/Multi-Agent-Reseach-and-Report-Factory
+================================================================================
+
+1. OVERVIEW & WORKFLOW INITIATION
+--------------------------------------------------------------------------------
+The Multi-Agent Research & Report Factory accepts research problem specifications
+either through the Interactive Liquid Glass Command Interface (Next.js web app)
+or programmatically via HTTP REST API (`POST /api/research`) or Direct TypeScript
+SDK invocation (`ResearchOrchestrator`).
+
+2. INPUT SCHEMA & PARAMETER DICTIONARY
+--------------------------------------------------------------------------------
+Parameter Name      Type       Allowed Values / Constraints         Default
+--------------------------------------------------------------------------------
+topic               string     1 to 500 characters                  (Required)
+                               Free-form text defining core
+                               inquiry (e.g. "Commercial Viability
+                               of Solid-State Batteries by 2030")
+
+depth               string     "quick" | "standard" | "deep"        "standard"
+                               - quick: 3 search queries, 6 sources,
+                                 focus on executive briefing
+                               - standard: 5 search queries, 10 sources,
+                                 balanced analytical breakdown
+                               - deep: 8+ queries, 16+ sources,
+                                 exhaustive scientific and market
+                                 benchmarking
+
+persona             string     "executive" | "academic" |           "executive"
+                               "technical" | "general"
+                               - executive: C-suite risk/ROI,
+                                 strategic imperatives, market TCO
+                               - academic: Formal methodology,
+                                 peer-reviewed focus, citations
+                               - technical: Architecture, benchmarks,
+                                 engineering constraints, data tables
+                               - general: Accessible, high clarity,
+                                 plain-language synthesis
+
+searchScope         string     "all" | "academic" | "news" |        "all"
+                               "market"
+                               - all: Global web, arXiv, DDG, Wiki
+                               - academic: Restricted to IEEE, Nature,
+                                 arXiv, NIH, institutional repositories
+                               - news: Reuters, Bloomberg, financial
+                               - market: Gartner, McKinsey, Statista
+
+redTeamMode         boolean    true | false                         false
+                               When enabled, activates adversarial
+                               counter-thesis synthesis, failure-mode
+                               stress tests, and supply-chain worst-case
+                               simulations in Critic and Writer agents.
+
+customInstructions  string     Optional (up to 2000 chars)          ""
+                               Domain-specific emphasis, excluded angles,
+                               or specialized framing requirements.
+
+customDocuments     array      Optional list of custom uploaded     []
+                               vault documents.
+                               Document Object Schema:
+                               {
+                                 id: string,
+                                 name: string,
+                                 content: string (raw text/markdown),
+                                 sizeBytes: number,
+                                 uploadedAt: number (epoch ms)
+                               }
+
+aiOptions           object     Optional Gemini / Model tuning       {}
+                               {
+                                 apiKey?: string,
+                                 model?: "gemini-1.5-pro" |
+                                         "gemini-1.5-flash",
+                                 mockMode?: boolean (offline demo)
+                               }
+
+3. SAMPLE PAYLOAD (JSON)
+--------------------------------------------------------------------------------
+{
+  "topic": "Commercial Viability of Solid-State Batteries by 2030",
+  "depth": "standard",
+  "persona": "executive",
+  "searchScope": "all",
+  "redTeamMode": true,
+  "customInstructions": "Highlight automotive OEM pilot timelines and raw electrolyte cell cost per kWh compared to lithium-iron-phosphate (LFP).",
+  "customDocuments": [
+    {
+      "id": "doc-vault-01",
+      "name": "Q3_Internal_Battery_Lab_Notes.txt",
+      "content": "Observed dendrite suppression across 400 test cycles at 45C using sulfide solid electrolyte separator. Manufacturing yields remain constrained at 62%.",
+      "sizeBytes": 139,
+      "uploadedAt": 1791963000000
+    }
+  ],
+  "aiOptions": {
+    "mockMode": false
+  }
+}
+
+4. VALIDATION & SANITIZATION RULES
+--------------------------------------------------------------------------------
+- If `topic` is empty or whitespace-only, throws HTTP 400 "Topic is required".
+- Automatically sanitizes special characters to prevent prompt injection.
+- If `depth` or `persona` are omitted, gracefully defaults to 'standard' / 'executive'.
+- Custom document payloads are capped at 5MB combined payload size.
+- Graceful degradation: If Gemini API key is missing or exhausted, orchestrator
+  switches to local deterministic intelligent heuristics without throwing unhandled exceptions.
+================================================================================

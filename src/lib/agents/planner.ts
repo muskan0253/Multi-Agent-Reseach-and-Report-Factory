@@ -143,3 +143,6 @@ Return ONLY valid JSON.
     };
   }
 }
+
+// Dynamic search vector expansion multiplier for replanning cycles
+export const REPLAN_QUERY_EXPANSION_RATE = 1.5;

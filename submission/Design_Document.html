@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Document - Multi-Agent Research & Report Factory</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.55;
+    font-size: 10.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    font-size: 20pt;
+    color: #0f172a;
+    border-bottom: 3px solid #06b6d4;
+    padding-bottom: 5px;
+    margin-bottom: 4px;
+    margin-top: 0;
+  }
+  .subtitle {
+    font-size: 12pt;
+    color: #0891b2;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .meta-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5pt;
+  }
+  .meta-col {
+    display: inline-block;
+    width: 48%;
+  }
+  h2 {
+    font-size: 13pt;
+    color: #0f172a;
+    border-left: 4px solid #0891b2;
+    padding-left: 8px;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-size: 11pt;
+    color: #1e293b;
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+  p {
+    margin: 0 0 8px 0;
+  }
+  ul, ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  code {
+    font-family: "JetBrains Mono", Consolas, Monaco, monospace;
+    font-size: 9pt;
+    background-color: #f1f5f9;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #0f172a;
+  }
+  pre {
+    font-family: "JetBrains Mono", Consolas, Monaco, monospace;
+    font-size: 8.5pt;
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 10px 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  .callout {
+    background-color: #ecfeff;
+    border-left: 4px solid #06b6d4;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0;
+    font-size: 9.5pt;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+</style>
+</head>
+<body>
+
+<h1>System Architecture & Design Document</h1>
+<div class="subtitle">Multi-Agent Research & Report Factory (v1.0.0 Production Release)</div>
+
+<div class="meta-box">
+  <div class="meta-col">
+    <strong>Author:</strong> Anushka Tandon (<a href="https://github.com/AnushkaTandon26">@AnushkaTandon26</a>)<br>
+    <strong>System:</strong> Multi-Agent Research & Report Factory<br>
+    <strong>Pattern:</strong> Evaluator-Optimizer Multi-Agent Blackboard
+  </div>
+  <div class="meta-col">
+    <strong>Framework:</strong> Next.js 14 App Router, TypeScript<br>
+    <strong>Orchestrator:</strong> Event-Driven State Machine (`ResearchOrchestrator`)<br>
+    <strong>Date:</strong> October 2026
+  </div>
+</div>
+
+<h2>1. Architectural Overview & Design Philosophy</h2>
+<p>
+The system implements a decoupled, event-driven multi-agent architecture specifically engineered to eliminate factual hallucination and unverified assertions in autonomous research synthesis.
+</p>
+<p>
+Rather than relying on a brittle chain-of-thought prompt in a single execution context, the platform partitions research into five specialized roles operating across a shared state blackboard:
+</p>
+<pre>
+   [User Topic & Depth]
+            │
+            ▼
+┌───────────────────────┐
+│ 01. Strategic Planner │  ── Formulates MECE Sub-Questions & Hypotheses
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│ 02. Scout Searcher    │ ◄───────────────────────────────┐
+└───────────┬───────────┘                                 │
+            │                                             │ [Adaptive Feedback Loop]
+            ▼                                             │ Dispatches Refined Query Vectors
+┌───────────────────────┐                                 │ (score < 80 or info gaps)
+│ 03. Deep Reader       │                                 │
+└───────────┬───────────┘                                 │
+            │                                             │
+            ▼                                             │
+┌───────────────────────┐                                 │
+│ 04. Epistemic Critic  │  ── Evaluates Evidence Rigor ───┘
+└───────────┬───────────┘
+            │ [Approved: Evidence Reliable & Sufficient]
+            ▼
+┌───────────────────────┐
+│ 05. Exec Synthesizer  │  ── Emits Markdown Whitepaper with Footnote Citations [^1]
+└───────────────────────┘
+</pre>
+
+<h2>2. Detailed Station Specifications</h2>
+
+<h3>Station 01: Strategic Planner (`PlannerAgent`)</h3>
+<ul>
+  <li><strong>Input:</strong> Research topic, target depth (<code>quick</code> | <code>standard</code> | <code>deep</code>), target persona (<code>executive</code> | <code>academic</code> | <code>technical</code>).</li>
+  <li><strong>Output:</strong> <code>ResearchPlan</code> object containing deconstructed sub-questions, working hypotheses, and initial search query vectors.</li>
+  <li><strong>Adaptive Capability:</strong> Can dynamically update active working hypotheses in shared run memory upon receiving a gap critique from the Epistemic Critic.</li>
+</ul>
+
+<h3>Station 02: Scout Searcher (`SearcherAgent`)</h3>
+<ul>
+  <li><strong>Input:</strong> Initial search query vectors from Planner OR refined targeted queries from Critic replanning loop.</li>
+  <li><strong>Tools Invoked:</strong> <code>WebSearchTool</code> (DuckDuckGo instant & live HTML fallback, Wikipedia API, academic indices).</li>
+  <li><strong>Output:</strong> Deduplicated array of <code>SearchSource</code> records with domain authority tags.</li>
+</ul>
+
+<h3>Station 03: Deep Reader (`ReaderAgent`)</h3>
+<ul>
+  <li><strong>Input:</strong> Discovered source documents and user-provided vault documents.</li>
+  <li><strong>Tools Invoked:</strong> <code>DocumentParserTool</code>, Regex quantitative extractor.</li>
+  <li><strong>Output:</strong> Array of structured <code>ExtractedFact</code> objects categorized as <code>statistic</code>, <code>finding</code>, or <code>quote</code>.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h3>Station 04: Epistemic Critic (`CriticAgent`)</h3>
+<ul>
+  <li><strong>Input:</strong> Research plan, source candidate list, and extracted facts bank.</li>
+  <li><strong>Core Rubric:</strong> Computes domain authority scorecards (0-100), flags unverified claims, identifies information gaps, and stress-tests hypotheses.</li>
+  <li><strong>Evaluator-Optimizer Gate:</strong>
+    <ul>
+      <li>If <code>overallCredibilityScore &lt; 80</code> OR <code>informationGaps.length &gt; 0</code>: Sets <code>criticDecision = 'request_more_evidence'</code> and generates targeted <code>followUpSearchQueries</code>.</li>
+      <li>If evidence is sufficient: Emits <code>criticDecision = 'approved'</code> and authorizes Stage 05 synthesis.</li>
+    </ul>
+  </li>
+  <li><strong>Red Team Adversarial Module:</strong> Actively identifies worst-case operational risks, supply-chain bottlenecks, and counter-theses.</li>
+</ul>
+
+<h3>Station 05: Executive Synthesizer (`WriterAgent`)</h3>
+<ul>
+  <li><strong>Input:</strong> Audited facts, approved sources, persona styling directives, and synthesis guidance from Critic.</li>
+  <li><strong>Output:</strong> Publication-grade whitepaper rendered in Markdown with bracketed footnote citations (<code>[^1]</code>), Executive Summary, Comparative Matrix, and Bibliography.</li>
+</ul>
+
+<h2>3. State Machine & Memory Management</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Memory Component</th>
+      <th>State Scope</th>
+      <th>Data Structures & Mutability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>verifiedFacts</code></td>
+      <td>Run-scoped</td>
+      <td>Array of facts confirmed with confidence &ge; 0.70. Append-only during replan loops.</td>
+    </tr>
+    <tr>
+      <td><code>rejectedSources</code></td>
+      <td>Run-scoped</td>
+      <td>Sources failing domain authority or flagged for commercial bias by Critic.</td>
+    </tr>
+    <tr>
+      <td><code>activeHypotheses</code></td>
+      <td>Dynamic</td>
+      <td>Initial hypotheses formulated by Planner, refined when Critic detects critical gaps.</td>
+    </tr>
+    <tr>
+      <td><code>replanHistory</code></td>
+      <td>Audit Log</td>
+      <td>Sequential record of loops containing <code>from</code>, <code>to</code>, <code>reason</code>, <code>queryBefore</code>, <code>queryAfter</code>, <code>scoreBefore</code>, <code>scoreAfter</code>.</td>
+    </tr>
+    <tr>
+      <td><code>messageBus</code></td>
+      <td>Pub/Sub</td>
+      <td>In-memory event stream transmitting typed messages (<code>task</code>, <code>result</code>, <code>critique</code>, <code>status</code>).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. UI Design System: Apple Liquid Glass Dark Theme</h2>
+<ul>
+  <li><strong>Color Palette:</strong> Deep obsidian base (<code>#07080F</code> to <code>#0B0D1A</code>) with ambient blurred violet/cyan/magenta orbs.</li>
+  <li><strong>Frosted Glass Tokens:</strong> <code>backdrop-filter: blur(20px) saturate(160%)</code>, 1px white border with 12% alpha, subtle inner top edge highlight, and soft multi-elevation drop shadows.</li>
+  <li><strong>Agent Station Edge Accents:</strong> Station 01 Violet (<code>#7C5CFF</code>), Station 02 Cyan (<code>#06B6D4</code>), Station 03 Amber (<code>#F59E0B</code>), Station 04 Red (<code>#EF4444</code>), Station 05 Fuchsia (<code>#A855F7</code>).</li>
+  <li><strong>Typography:</strong> Inter for high-readability body UI, JetBrains Mono for telemetry, counters, and execution traces. Meets WCAG AA contrast standards.</li>
+</ul>
+
+<h2>5. Testing & Verification</h2>
+<p>
+The system guarantees deterministic execution through Vitest suites:
+</p>
+<ul>
+  <li><code>tests/criticFeedbackLoop.test.ts</code>: Proves non-linear multi-agent feedback wherein Critic rejection forces Scout re-query and Planner hypothesis evolution.</li>
+  <li><code>tests/orchestrator.test.ts</code>: Validates end-to-end 5-station execution and execution trace generation.</li>
+  <li><code>tests/tools.test.ts</code>: Verifies search and document parsing tools with deterministic fallbacks.</li>
+</ul>
+
+</body>
+</html>
